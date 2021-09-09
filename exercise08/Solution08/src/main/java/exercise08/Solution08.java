@@ -51,25 +51,44 @@ public class Solution08 {
 
     public static void main(String[] args) {
         System.out.print("How many people? ");
-        int people = intInput();
+        int totalPeople = intInput();
 
         System.out.print("How many pizzas do you have? ");
-        int pizzas = intInput();
+        int totalPizzas = intInput();
 
         System.out.print("How many slices per pizza? ");
-        int pieces = intInput();
+        int slicesPerPizza = intInput();
 
-        int totalSlices = pieces * pizzas;
-        int totalpp = totalSlices / people;
-        int remainder = totalSlices % people;
+        checkEvenSlices(slicesPerPizza);
 
-        System.out.printf("%d people with %d pizzas (%d pieces)%n", people, pizzas, totalSlices);
-        System.out.printf("Each person gets %d pieces of pizza.%n", totalpp);
-        System.out.printf("There are %d leftover pieces.%n", remainder);
+        int totalSlices = getTotalSlices(slicesPerPizza, totalPizzas);
+
+        System.out.printf("%d people with %d pizzas (%d pieces)%n", totalPeople, totalPizzas, totalSlices);
+        System.out.printf("Each person gets %d pieces of pizza.%n", getTotalPerPerson(totalSlices, totalPeople));
+        System.out.printf("There are %d leftover pieces.%n", getRemainder(totalSlices, totalPeople));
     }
 
     public static int intInput(){
         Scanner input = new Scanner(System.in);
         return input.nextInt();
+    }
+
+    public static void checkEvenSlices(int slicesPerPizza){
+        while ((slicesPerPizza & 1) == 1){
+            System.out.print("Please enter an even number of slices per pizza: ");
+            slicesPerPizza = intInput();
+        }
+    }
+
+    public static int getTotalSlices(int slices, int pizza){
+        return slices * pizza;
+    }
+
+    public static int getTotalPerPerson(int slices, int people){
+        return slices / people;
+    }
+
+    public static int getRemainder(int slices, int people){
+        return slices % people;
     }
 }
