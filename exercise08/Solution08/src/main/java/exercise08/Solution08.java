@@ -24,6 +24,7 @@ public class Solution08 {
         Each person gets 2 pieces of pizza.
         There are 0 leftover pieces.
 
+     ----------------
      * Pseudocode:
      * Prompt user "How many people?"
      * scan input

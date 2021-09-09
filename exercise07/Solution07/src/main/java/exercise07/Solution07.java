@@ -29,8 +29,6 @@ public class Solution07 {
     * -Use a constant to hold the conversion factor.
     ----------------------------------------------------------------------------
     * Pseudocode:
-    * declare CONVERSION_FACTOR constant
-    *
     * Prompt user: "What is the length of the room in feet?"
     * scan user input
     *
@@ -39,12 +37,10 @@ public class Solution07 {
     *
     * print "You entered dimensions of 'length' feet by 'width' feet."
     *
-    * get square feet
-    * get square meters using formula m^2 = f^2 * 0.09290304
+    * get square feet (l * w)
+    * get square meters using constant 0.09290304 * square feet
     *
-    * print "The area is:"
-    * print "'squareFeet' square feet"
-    * print "'squareMeters' square meters"
+    * print "The area is:%n 'squareFeet' square feet %n 'squareMeters' square meters"
 
      */
 
