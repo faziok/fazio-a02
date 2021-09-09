@@ -49,8 +49,6 @@ public class Solution07 {
      */
 
     public static void main(String[] args) {
-        final double CONVERSION_FACTOR = 0.09290304;
-
         System.out.print("What is the length of the room in feet? ");
         int length = scanIntInput();
 
@@ -59,16 +57,24 @@ public class Solution07 {
 
         System.out.printf("You entered dimensions of %d feet by %d feet.%n", length, width);
 
-        int squareFeet = length * width;
-        double squareMeters = squareFeet * CONVERSION_FACTOR;
+        int squareFeet = getSquareFeet(length, width);
+        double squareMeters = getSquareMeters(squareFeet);
 
-        System.out.println("The area is:");
-        System.out.printf("%d square feet%n%.3f square meters%n", squareFeet, squareMeters);
+        System.out.printf("The area is:%n%d square feet%n%.3f square meters%n", squareFeet, squareMeters);
 
     }
 
     public static int scanIntInput(){
         Scanner input = new Scanner(System.in);
         return input.nextInt();
+    }
+
+    public static int getSquareFeet(int l, int w){
+        return l * w;
+    }
+
+    public static double getSquareMeters(int feet){
+        final double CONVERSION_FACTOR = 0.09290304;
+        return feet * CONVERSION_FACTOR;
     }
 }
