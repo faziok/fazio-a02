@@ -28,54 +28,59 @@ public class challenge01 {
 
     *Pseudocode:
     * Prompt user "What is your current age?"
-    * scan in user input (method)
+    * scan in user input
     *
     * Prompt user "At what age would you like to retire?"
-    * scan in user input (method)
+    * scan in user input
     *
-    * int yearsLeft = retirementAge - currentAge
-    * if years left > 0
-    *   print "You have 'yearsLeft' years left until you can retire."
-    * else
-    *   print "You can already retire!!!"
+    * convert strings to integers
     *
-    * int currentYear = get current year from system
+    * yearsLeft = retirementAge - currentAge
+    *
+    * get current year from system
     * int retirementYear = currentYear + yearsLeft
     *
-    * convert strings into integers. (method)
-    *
-    * print "It's 'currentYear', so you can retire in 'retireYear'."
-     */
+    *  if yearsleft > 0
+    *   print "You have 'yearsLeft' years left until you can retire."
+    *   print "It's 'currentYear', so you can retire in 'retireYear'."
+    * else
+    *   print "You can already retire!!!"
+    *   print "It's 'currentYear', you could have retired in retirementYear'."
+    */
 
     public static void main(String[] args) {
         System.out.print("What is your current age? ");
-        String currentAge = scanStringInput();
+        String age = scanStringInput();
 
         System.out.print("At what age would you like to retire? ");
-        String retirementAge = scanStringInput();
+        String retire = scanStringInput();
 
-        int yearsLeft = toInteger(retirementAge) - toInteger(currentAge);
-        int currentYear = Year.now().getValue();
-        int retireYear = currentYear + yearsLeft;
+        int currentAge = Integer.parseInt(age);
+        int retireAge = Integer.parseInt(retire);
 
-        if (yearsLeft > 0){
-            System.out.printf("You have %d years left until you can retire.%n", yearsLeft);
-            System.out.printf("It's %d, so you can retire in %d.%n", currentYear, retireYear);
-        }
-        else{
-            System.out.println("You can already retire!!!");
-            System.out.printf("It's %d, so you retired in %d.%n", currentYear, retireYear);
-        }
+        getRetireYear(getYearsLeft(retireAge, currentAge));
     }
 
     public static String scanStringInput(){
         Scanner inputX = new Scanner(System.in);
-        String Y = inputX.nextLine();
-        return Y;
+        return inputX.nextLine();
     }
 
-    public static int toInteger(String X){
-        int Y = Integer.parseInt(X);
-        return Y;
+    public static int getYearsLeft(int x, int y){
+        return x - y;
+    }
+
+    public static void getRetireYear(int yearsToRetire){
+        int currentYear = Year.now().getValue();
+        int retireYear = yearsToRetire + currentYear;
+
+        if (yearsToRetire > 0){
+            System.out.printf("You have %d years left until you can retire.%n", yearsToRetire);
+            System.out.printf("It's %d, so you can retire in %d.%n", currentYear, retireYear);
+        }
+        else{
+            System.out.println("You can already retire!!!");
+            System.out.printf("It's %d, your old ass could have retired in %d.%n", currentYear, retireYear);
+        }
     }
 }

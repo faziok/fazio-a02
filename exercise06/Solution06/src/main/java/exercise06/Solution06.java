@@ -23,47 +23,51 @@ public class Solution06 {
     * Constraints:
     * -Again, be sure to convert the input to numerical data before doing any math.
     * -Don’t hard-code the current year into your program. Get it from the system time via your programming language.
-
+    ----------------
     *Pseudocode:
     * Prompt user "What is your current age?"
-    * scan in user input (method)
+    * scan in user input
     *
     * Prompt user "At what age would you like to retire?"
-    * scan in user input (method)
+    * scan in user input
+    *
+    * convert input to integers
     *
     * int yearsLeft = retirementAge - currentAge
-    * int currentYear = get current year from system
-    * int retirementYear = currentYear + yearsLeft
-    *
-    * convert strings into integers. (method)
-    *
     * print "You have 'yearsLeft' years left until you can retire."
+    *
+    * get current year from system
+    * int retirementYear = currentYear + yearsLeft
     * print "It's 'currentYear', so you can retire in 'retireYear'."
-     */
+    */
 
     public static void main(String[] args) {
         System.out.print("What is your current age? ");
-        String currentAge = scanStringInput();
+        String age = scanStringInput();
 
         System.out.print("At what age would you like to retire? ");
-        String retirementAge = scanStringInput();
+        String retire = scanStringInput();
 
-        int yearsLeft = toInteger(retirementAge) - toInteger(currentAge);
-        int currentYear = Year.now().getValue();
-        int retireYear = currentYear + yearsLeft;
+        int currentAge = Integer.parseInt(age);
+        int retireAge = Integer.parseInt(retire);
 
-        System.out.printf("You have %d years left until you can retire.%n", yearsLeft);
-        System.out.printf("It's %d, so you can retire in %d.%n", currentYear, retireYear);
+        getRetireYear(getYearsLeft(retireAge, currentAge));
     }
 
     public static String scanStringInput(){
         Scanner inputX = new Scanner(System.in);
-        String Y = inputX.nextLine();
-        return Y;
+        return inputX.nextLine();
     }
 
-    public static int toInteger(String X){
-        int Y = Integer.parseInt(X);
-        return Y;
+    public static int getYearsLeft(int x, int y){
+        int difference = x - y;
+        System.out.printf("You have %d years left until you can retire.%n", difference);
+        return difference;
+    }
+
+    public static void getRetireYear(int x){
+        int currentYear = Year.now().getValue();
+        int retireYear = x + currentYear;
+        System.out.printf("It's %d, so you can retire in %d.%n", currentYear, retireYear);
     }
 }
