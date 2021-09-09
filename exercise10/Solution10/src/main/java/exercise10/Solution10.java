@@ -50,17 +50,20 @@ public class Solution10 {
 
         Scanner input = new Scanner(System.in);
 
-        double[] prices = new double[3];
-        double[] quantity = new double[3];
+        String[] pricesStr = new String[3];
+        String[] quantityStr = new String[3];
         double[] item = new double [3];
 
-        for (int i = 0; i < prices.length; i++){
+        for (int i = 0; i < pricesStr.length; i++){
             System.out.printf("Enter the price of item %d: ", (i+1));
-            prices[i] = input.nextDouble();
+            pricesStr[i] = input.nextLine();
             System.out.printf("Enter the quantity of item %d: ", (i+1));
-            quantity[i] = input.nextDouble();
+            quantityStr[i] = input.nextLine();
 
-            item[i] = prices[i] * quantity[i];
+            double price = Double.parseDouble(pricesStr[i]);
+            double quantity = Double.parseDouble(quantityStr[i]);
+
+            item[i] = price * quantity;
         }
 
         double subTotal = getSubTotal(item);
