@@ -23,10 +23,8 @@ public class Solution09 {
      * Constraints:
      * -Use a constant to hold the conversion rate.
      * -Ensure that you round up to the next whole number.
-     *
+     ---------------
      * Pseudocode:
-     * declare constant for area per gallon = 350
-     *
      * prompt user for length of ceiling
      * scan input
      *
@@ -34,7 +32,7 @@ public class Solution09 {
      * scan input
      *
      * get area = l * w
-     * total gallons needed = constant / area
+     * total gallons needed = area / constant
      * round up integer
      *
      * print "You will need to purchase 'totalGallons' gallons of paint to cover 'area' square feet."
@@ -42,7 +40,7 @@ public class Solution09 {
      */
 
     public static void main(String[] args) {
-        final int ONE_GALLON = 350;
+        final int ONE_GALLON = 350; //one gallon covers 350 square feet
 
         System.out.print("What is the length of the ceiling? ");
         int length = intInput();
@@ -50,15 +48,23 @@ public class Solution09 {
         System.out.print("What is the width of the ceiling? ");
         int width = intInput();
 
-        int area = length * width;
-        double gallons = area / (double) ONE_GALLON;
-        int total = (int) Math.ceil(gallons);
+        int area = getArea(length, width);
 
-        System.out.printf("You will need to purchase %d gallons of paint to cover %d square feet.%n", total, area);
+        System.out.printf("You will need to purchase %d gallons of paint to cover %d square feet.%n",
+                getTotalGallons(area, ONE_GALLON), area);
     }
 
     public static int intInput(){
         Scanner input = new Scanner(System.in);
         return input.nextInt();
+    }
+
+    public static int getArea(int l, int w){
+        return l * w;
+    }
+
+    public static int getTotalGallons(int area, int gallon){
+        double gallons = area / (double) gallon;
+        return (int) Math.ceil(gallons);
     }
 }
