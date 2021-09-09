@@ -1,12 +1,7 @@
 
-S	java:S106;"9Replace this use of System.out or System.err by a logger.(š³«“úÿÿÿÿ
-S	java:S106="9Replace this use of System.out or System.err by a logger.(éÀ‡Ëÿÿÿÿÿ
-S	java:S106G"9Replace this use of System.out or System.err by a logger.(ú™¼Îýÿÿÿÿ
-N	java:S106H"9Replace this use of System.out or System.err by a logger.(à•èá
-S	java:S106I"9Replace this use of System.out or System.err by a logger.(¿Ô —ùÿÿÿÿ
-M
-java:S1128	"+Remove this unused import 'java.text.Bidi'.(³²Ùçøÿÿÿÿ8ÊñÉÆ¼/
-P
-java:S1128
-"3Remove this unused import 'java.text.NumberFormat'.(¿¸ž»8ÊñÉÆ¼/
+S	java:S106:"9Replace this use of System.out or System.err by a logger.(š³«“úÿÿÿÿ
+S	java:S106<"9Replace this use of System.out or System.err by a logger.(éÀ‡Ëÿÿÿÿÿ
+S	java:S106F"9Replace this use of System.out or System.err by a logger.(øÇæÝúÿÿÿÿ
+N	java:S106G"9Replace this use of System.out or System.err by a logger.(†è·Î
+M	java:S106H"9Replace this use of System.out or System.err by a logger.(¥—¼V
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ößáþÿÿÿÿ

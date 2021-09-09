@@ -6,8 +6,6 @@ package exercise10;
  */
 
 import java.math.BigDecimal;
-import java.text.Bidi;
-import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Solution10 {
@@ -32,7 +30,7 @@ public class Solution10 {
      * -Keep the input, processing, and output parts of your program separate.
      *      Collect the input, then do the math operations and string building, and then print out the output.
      * -Be sure you explicitly convert input to numerical data before doing any calculations.
-     *
+     ---------------------
      * Pseudocode:
      * Declare constant for 5%(.055) tax rate
      *
@@ -51,6 +49,7 @@ public class Solution10 {
         final double taxRate = .055;
 
         Scanner input = new Scanner(System.in);
+
         double[] prices = new double[3];
         double[] quantity = new double[3];
         double[] item = new double [3];
@@ -64,12 +63,24 @@ public class Solution10 {
             item[i] = prices[i] * quantity[i];
         }
 
-        BigDecimal subTotal = BigDecimal.valueOf(item[0] + item[1] + item[2]);
-        BigDecimal taxTotal = subTotal.multiply(BigDecimal.valueOf(taxRate));
-        BigDecimal totalAmount = subTotal.add(taxTotal);
+        double subTotal = getSubTotal(item);
+        double taxTotal = getTaxTotal(subTotal, taxRate);
+        double totalAmount = getTotal(subTotal, taxTotal);
 
-        System.out.printf("Subtotal: $%.2f%n", subTotal);
-        System.out.printf("Tax: $%.2f%n", taxTotal);
-        System.out.printf("Total: $%.2f%n", totalAmount);
+        System.out.printf("Subtotal: $%.2f%n", BigDecimal.valueOf(subTotal));
+        System.out.printf("Tax: $%.2f%n", BigDecimal.valueOf(taxTotal));
+        System.out.printf("Total: $%.2f%n", BigDecimal.valueOf(totalAmount));
+    }
+
+    public static double getSubTotal(double[] amounts){
+        return amounts[0] + amounts[1] + amounts[2];
+    }
+
+    public static double getTaxTotal(double sub, double tax){
+        return sub * tax;
+    }
+
+    public static double getTotal(double sub, double taxed){
+        return sub + taxed;
     }
 }
