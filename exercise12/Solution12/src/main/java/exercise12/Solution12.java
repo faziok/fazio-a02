@@ -53,7 +53,7 @@ public class Solution12 {
     public static void main(String[] args) {
         System.out.print("Enter the Principal: ");
         double principalBalance = input();
-        System.out.print("Enter the rate of interest: ");
+        System.out.print("Enter the interest rate as a percentage (ex. 15 not .15)?");
         double interestRate = input();
         System.out.print("Enter the number of years: ");
         int numberYears = (int) input();
