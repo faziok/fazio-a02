@@ -59,12 +59,12 @@ public class Solution14 {
         Scanner input2 = new Scanner(System.in);
         String state = input2.nextLine();
 
-        if (state.equals("WI") || state.equals("Wisconsin")) {
+        if (state.equalsIgnoreCase("WI") || state.equalsIgnoreCase("Wisconsin")) {
             System.out.printf("The subtotal is $%.2f%nThe tax is 5.5%%%nThe total is $%.2f%n",
                     amount, getNewAmount(amount));
         }
 
-        if (!state.equals("WI") && !state.equals("Wisconsin")) {
+        if (!state.equalsIgnoreCase("WI") && !state.equalsIgnoreCase("Wisconsin")) {
             System.out.printf("The total is $%.2f%n"
                     , amount);
         }
