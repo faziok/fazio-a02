@@ -59,20 +59,19 @@ public class Solution14 {
         Scanner input2 = new Scanner(System.in);
         String state = input2.nextLine();
 
+        String output = String.format("The total is $%.2f%n", amount);
+
         if (state.equalsIgnoreCase("WI") || state.equalsIgnoreCase("Wisconsin")) {
-            System.out.printf("The subtotal is $%.2f%nThe tax is 5.5%%%nThe total is $%.2f%n",
+            output = String.format("The subtotal is $%.2f%nThe tax is 5.5%%%nThe total is $%.2f%n",
                     amount, getNewAmount(amount));
         }
 
-        if (!state.equalsIgnoreCase("WI") && !state.equalsIgnoreCase("Wisconsin")) {
-            System.out.printf("The total is $%.2f%n"
-                    , amount);
-        }
+        System.out.print(output);
     }
 
     public static double getNewAmount(double amount){
-        double taxAmount = amount * .055;
-        double newAmount = amount + (taxAmount);
+        double taxedAmount = amount * .055;
+        double newAmount = amount + (taxedAmount);
         return Math.ceil((newAmount) * 100)/100;
     }
 }
