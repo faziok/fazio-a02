@@ -64,9 +64,9 @@ public class Solution13 {
 
         public static double getEndAmount(double principal, double interestRate, int years, int timesPerYear){
             double x = (1 + ((interestRate/100)/timesPerYear));
-            double y = timesPerYear * (double) years;
-            double z = Math.pow(x, y);
-            double value = principal * z;
+            double powerOf = timesPerYear * (double) years;
+            double z = Math.pow(x, powerOf);
+            double value = principal * z; //Principal(1 + (interestRate/timesPerYear)^(timesPerYear * years)
             return Math.ceil((value) * 100)/100;
         }
 
