@@ -46,8 +46,7 @@ public class Challenge01 {
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
 
-        answer = checkValid(answer);
-        printTemp(answer);
+        printTemp(checkValid(answer));
     }
 
     public static String checkValid (String answer){
@@ -60,7 +59,7 @@ public class Challenge01 {
     }
 
     public static void printTemp (String answer){
-        double finalTemp = 0;
+        double finalTemp;
         String scale;
 
         if (answer.equalsIgnoreCase("C")){
@@ -75,7 +74,6 @@ public class Challenge01 {
             finalTemp = (temp * (1.8)) + 32; //to Fahrenheit
             scale = "Fahrenheit";
         }
-
         System.out.printf("The temperature in %s is %.1f.%n", scale, finalTemp);
     }
 

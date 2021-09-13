@@ -34,7 +34,6 @@ public class Solution18 {
      *      scale = Fahrenheit
      *
      * print "The temperature in 'scale' is 'temp'
-     *
      */
 
     public static void main(String[] args) {
@@ -46,8 +45,7 @@ public class Solution18 {
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
 
-        answer = checkValid(answer);
-        printTemp(answer);
+        printTemp(checkValid(answer));
     }
 
     public static String checkValid (String answer){
@@ -61,18 +59,19 @@ public class Solution18 {
 
     public static void printTemp (String answer){
         Scanner input = new Scanner(System.in);
-        double finalTemp = 0;
+        double temp;
+        double finalTemp;
         String scale;
 
         if (answer.equalsIgnoreCase("C")){
             System.out.print("Please enter the temperature in Fahrenheit: ");
-            double temp = Double.parseDouble(input.nextLine());
+            temp = Double.parseDouble(input.nextLine());
             finalTemp = ((temp - 32) * .5556); //to Celsius
             scale = "Celsius";
         }
         else{
             System.out.print("Please enter the temperature in Celsius: ");
-            double temp = Double.parseDouble(input.nextLine());
+            temp = Double.parseDouble(input.nextLine());
             finalTemp = (temp * (1.8)) + 32; //to Fahrenheit
             scale = "Fahrenheit";
         }

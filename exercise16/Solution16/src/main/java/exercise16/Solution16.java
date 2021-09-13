@@ -23,8 +23,6 @@ public class Solution16 {
      *  print "You are not old enough to legally drive."
      */
 
-
-
     public static void main(String[] args) {
         final int LEGAL_AGE = 16;
 

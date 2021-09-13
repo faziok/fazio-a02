@@ -52,13 +52,7 @@ public class Solution17 {
         double hours = Double.parseDouble(isNumeric());
 
         double bloodAC = getBAC(gender, ounces, weight, hours);
-
-        if (bloodAC < .08 ){
-            System.out.printf("Your BAC is %.6f%nIt is legal for you to drive.%n", bloodAC);
-        }
-        else{
-            System.out.printf("Your BAC is %.6f%nIt is NOT legal for you to drive.%n", bloodAC);
-        }
+        printResult(bloodAC);
 
     }
 
@@ -92,5 +86,14 @@ public class Solution17 {
             ratio = .66; //female alcohol distribution ratio
         }
         return ((((ounces * 5.14) / weight) * ratio) - (.015 * hours));
+    }
+
+    public static void printResult(double bloodAlcoholContent){
+        if (bloodAlcoholContent < .08 ){
+            System.out.printf("Your BAC is %.6f%nIt is legal for you to drive.%n", bloodAlcoholContent);
+        }
+        else{
+            System.out.printf("Your BAC is %.6f%nIt is NOT legal for you to drive.%n", bloodAlcoholContent);
+        }
     }
 }

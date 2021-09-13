@@ -33,10 +33,10 @@ public class Solution15 {
         String password = input.nextLine();
 
         if (password.equals("abc$123")){
-            System.out.printf("Welcome!%n");
+            System.out.printf("Welcome, %s!%n", userName);
         }
         else{
-            System.out.printf("I don't know you.%n");
+            System.out.printf("I don't know you, %s.%n", userName);
         }
     }
 }

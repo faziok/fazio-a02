@@ -1,10 +1,6 @@
 
-W
-java:S1854"<Remove this useless assignment to local variable "userName".(Ó­Š‚şÿÿÿÿ
 S	java:S106"9Replace this use of System.out or System.err by a logger.(¥‚öúşÿÿÿÿ
-H
-java:S1481"-Remove this unused "userName" local variable.(Ó­Š‚şÿÿÿÿ
 N	java:S106"9Replace this use of System.out or System.err by a logger.(–ÏÂÊ
-S	java:S106$"9Replace this use of System.out or System.err by a logger.(¬Äüøüÿÿÿÿ
-S	java:S106'"9Replace this use of System.out or System.err by a logger.(ÅĞÛşÿÿÿÿ
+N	java:S106$"9Replace this use of System.out or System.err by a logger.(Ï˜áê
+N	java:S106'"9Replace this use of System.out or System.err by a logger.(ÌµÂõ
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œşäıÿÿÿÿÿ
