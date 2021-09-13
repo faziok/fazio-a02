@@ -10,21 +10,6 @@ import java.util.Scanner;
 public class Solution08 {
 
     /*
-     * Write a program to evenly divide pizzas.
-     * Prompt for the number of people, the number of pizzas, and the number of slices per pizza.
-     * Ensure that the number of pieces comes out even.
-     * Display the number of pieces of pizza each person should get.
-     * If there are leftovers, show the number of leftover pieces.
-
-        *Example Output
-        How many people? 8
-        How many pizzas do you have? 2
-        How many slices per pizza? 8
-        8 people with 2 pizzas (16 slices)
-        Each person gets 2 pieces of pizza.
-        There are 0 leftover pieces.
-
-     ----------------
      * Pseudocode:
      * Prompt user "How many people?"
      * scan input
@@ -44,7 +29,6 @@ public class Solution08 {
      * print "'totalPeople' people with 'totalPizzas' pizzas ('totalSlices' slices)"
      * print "Each person gets 'slicesPP' pieces of pizza."
      * print "There are 'remainder' leftover pieces."
-     *
      */
 
 
