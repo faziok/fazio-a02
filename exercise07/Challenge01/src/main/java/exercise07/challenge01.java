@@ -37,23 +37,31 @@ public class challenge01 {
         final double CONVERSION_FACTOR = 0.09290304;
 
         System.out.print("What is the length of the room in feet? ");
-        int length = scanIntInput();
+        Double length = Double.parseDouble(isNumeric());
 
         System.out.print("What is the width of the room in feet? ");
-        int width = scanIntInput();
+        Double width = Double.parseDouble(isNumeric());
 
-        System.out.printf("You entered dimensions of %d feet by %d feet.%n", length, width);
+        System.out.printf("You entered dimensions of %.1f feet by %.1f feet.%n", length, width);
 
-        int squareFeet = length * width;
+        double squareFeet = length * width;
         double squareMeters = squareFeet * CONVERSION_FACTOR;
 
         System.out.println("The area is:");
-        System.out.printf("%d square feet%n%.3f square meters%n", squareFeet, squareMeters);
+        System.out.printf("%.1f square feet%n%.1f square meters%n", squareFeet, squareMeters);
 
     }
 
-    public static int scanIntInput(){
+    public static String isNumeric(){
         Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric) {
+            System.out.print("Please answer with numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
     }
 }
