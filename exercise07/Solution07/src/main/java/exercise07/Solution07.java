@@ -27,30 +27,30 @@ public class Solution07 {
 
     public static void main(String[] args) {
         System.out.print("What is the length of the room in feet? ");
-        int length = scanIntInput();
+        double length = Double.parseDouble(scanIntInput());
 
         System.out.print("What is the width of the room in feet? ");
-        int width = scanIntInput();
+        double width = Double.parseDouble(scanIntInput());
 
-        System.out.printf("You entered dimensions of %d feet by %d feet.%n", length, width);
+        System.out.printf("You entered dimensions of %.1f feet by %.1f feet.%n", length, width);
 
-        int squareFeet = getSquareFeet(length, width);
+        double squareFeet = getSquareFeet(length, width);
         double squareMeters = getSquareMeters(squareFeet);
 
-        System.out.printf("The area is:%n%d square feet%n%.3f square meters%n", squareFeet, squareMeters);
+        System.out.printf("The area is:%n%.1f square feet%n%.1f square meters%n", squareFeet, squareMeters);
 
     }
 
-    public static int scanIntInput(){
+    public static String scanIntInput(){
         Scanner input = new Scanner(System.in);
-        return input.nextInt();
+        return input.nextLine();
     }
 
-    public static int getSquareFeet(int l, int w){
+    public static double getSquareFeet(double l, double w){
         return l * w;
     }
 
-    public static double getSquareMeters(int feet){
+    public static double getSquareMeters(double feet){
         final double CONVERSION_FACTOR = 0.09290304;
         return feet * CONVERSION_FACTOR;
     }
