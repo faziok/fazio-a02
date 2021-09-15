@@ -34,16 +34,16 @@ public class Solution13 {
 
     public static void main(String[] args) {
         System.out.print("What is the principal amount? ");
-        double principal = inputDouble();
+        double principal = Double.parseDouble(input());
 
         System.out.print("What is the interest rate as a percentage (ex. 15 not .15)? ");
-        double interestRate = inputDouble();
+        double interestRate = Double.parseDouble(input());
 
         System.out.print("What is the number of years? ");
-        int years = inputInt();
+        int years = Integer.parseInt(input());
 
         System.out.print("What is the number of times the interest is compounded per year? ");
-        int timesPerYear = inputInt();
+        int timesPerYear = Integer.parseInt(input());
 
         double endAmount = getEndAmount(principal, interestRate, years, timesPerYear);
         BigDecimal dollar = BigDecimal.valueOf(endAmount);
@@ -52,14 +52,9 @@ public class Solution13 {
                 principal, interestRate, years, timesPerYear, currencyFormat(dollar));
     }
 
-        public static double inputDouble(){
+        public static String input(){
             Scanner input = new Scanner(System.in);
-            return input.nextDouble();
-        }
-
-        public static int inputInt(){
-            Scanner input = new Scanner(System.in);
-            return input.nextInt();
+            return input.nextLine();
         }
 
         public static double getEndAmount(double principal, double interestRate, int years, int timesPerYear){

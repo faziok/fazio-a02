@@ -32,11 +32,11 @@ public class Solution12 {
 
     public static void main(String[] args) {
         System.out.print("Enter the Principal: ");
-        double principalBalance = input();
-        System.out.print("Enter the interest rate as a percentage (ex. 15 not .15)?");
-        double interestRate = input();
+        double principalBalance = Double.parseDouble(input());
+        System.out.print("Enter the interest rate as a percentage (ex. 15 not .15)? ");
+        double interestRate = Double.parseDouble(input());
         System.out.print("Enter the number of years: ");
-        int numberYears = (int) input();
+        int numberYears = Integer.parseInt(input());
 
         double totalAccrued = getNewBalance(principalBalance, interestRate, numberYears);
         BigDecimal dollar = BigDecimal.valueOf(totalAccrued);
@@ -46,9 +46,9 @@ public class Solution12 {
 
     }
 
-    public static double input(){
+    public static String input(){
         Scanner input = new Scanner(System.in);
-        return input.nextDouble();
+        return input.nextLine();
     }
 
     public static double getNewBalance(double principal, double rate, int time){

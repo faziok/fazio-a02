@@ -29,7 +29,7 @@ public class Solution14 {
     public static void main(String[] args) {
         System.out.print("What is the order amount? ");
         Scanner input1 = new Scanner(System.in);
-        double amount = input1.nextDouble();
+        double amount = Double.parseDouble(input1.nextLine());
 
         System.out.print("What is the state? ");
         Scanner input2 = new Scanner(System.in);
@@ -38,8 +38,8 @@ public class Solution14 {
         String output = String.format("The total is $%.2f%n", amount);
 
         if (state.equalsIgnoreCase("WI") || state.equalsIgnoreCase("Wisconsin")) {
-            output = String.format("The subtotal is $%.2f%nThe tax is 5.5%%%nThe total is $%.2f%n",
-                    amount, getNewAmount(amount));
+            output = String.format("The subtotal is $%.2f%nThe tax is $%.2f.%nThe total is $%.2f%n",
+                    amount, (amount * .055), getNewAmount(amount));
         }
 
         System.out.print(output);
