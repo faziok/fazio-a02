@@ -51,33 +51,35 @@ public class Solution20 {
         final double WISCONSIN_STATE_TAX = .05;
         final double ILLINOIS_STATE_TAX = .08;
 
+        Solution20 tax = new Solution20();
+
         System.out.print("What is the order amount? ");
-        double subTotal = Double.parseDouble(isNumeric());
+        double subTotal = Double.parseDouble(tax.isNumeric());
 
         System.out.print("What is the state? ");
-        String state = getInput();
+        String state = tax.getInput();
 
         double taxPercentage;
 
         if (state.equalsIgnoreCase("WI") || state.equalsIgnoreCase("Wisconsin")) {
-            taxPercentage = getWisconsinCountyTax(WISCONSIN_STATE_TAX);
-            printTaxedStates(subTotal, taxPercentage);
+            taxPercentage = tax.getWisconsinCountyTax(WISCONSIN_STATE_TAX);
+            tax.printTaxedStates(subTotal, taxPercentage);
         }
         else if (state.equalsIgnoreCase("IL") || state.equalsIgnoreCase("Illinois")){
             taxPercentage = ILLINOIS_STATE_TAX;
-            printTaxedStates(subTotal, taxPercentage);
+            tax.printTaxedStates(subTotal, taxPercentage);
         }
         else{
             System.out.printf("The total is $%.2f.%n", subTotal);
         }
     }
 
-    public static String getInput(){
+    public String getInput(){
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
-    public static String isNumeric(){
+    public String isNumeric(){
         Scanner input = new Scanner(System.in);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
@@ -89,7 +91,7 @@ public class Solution20 {
         return answer;
     }
 
-    public static double getWisconsinCountyTax(double wisconsinStateTax){
+    public double getWisconsinCountyTax(double wisconsinStateTax){
         System.out.print("Which county do you live in? Eau Claire or Dunn? ");
         String county = getInput();
 
@@ -105,8 +107,8 @@ public class Solution20 {
         return wisconsinStateTax;
     }
 
-    public static void printTaxedStates(double subTotal, double taxPercentage){
-        double taxedAmount = subTotal * taxPercentage;;
+    public void printTaxedStates(double subTotal, double taxPercentage){
+        double taxedAmount = subTotal * taxPercentage;
         double totalAmount = Math.ceil((subTotal + taxedAmount) * 100)/100;
         System.out.printf("The tax is: $%.2f.%nThe total is: $%.2f%n", taxedAmount, totalAmount);
     }

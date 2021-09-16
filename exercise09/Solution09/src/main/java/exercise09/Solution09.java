@@ -27,28 +27,30 @@ public class Solution09 {
     public static void main(String[] args) {
         final int ONE_GALLON = 350; //one gallon covers 350 square feet
 
+        Solution09 gallons = new Solution09();
+
         System.out.print("What is the length of the ceiling? ");
-        int length = intInput();
+        int length = gallons.intInput();
 
         System.out.print("What is the width of the ceiling? ");
-        int width = intInput();
+        int width = gallons.intInput();
 
-        int area = getArea(length, width);
+        int area = gallons.getArea(length, width);
 
         System.out.printf("You will need to purchase %d gallons of paint to cover %d square feet.%n",
-                getTotalGallons(area, ONE_GALLON), area);
+                gallons.getTotalGallons(area, ONE_GALLON), area);
     }
 
-    public static int intInput(){
+    public int intInput(){
         Scanner input = new Scanner(System.in);
         return input.nextInt();
     }
 
-    public static int getArea(int l, int w){
+    public int getArea(int l, int w){
         return l * w;
     }
 
-    public static int getTotalGallons(int area, int gallon){
+    public int getTotalGallons(int area, int gallon){
         double gallons = area / (double) gallon;
         return (int) Math.ceil(gallons);
     }

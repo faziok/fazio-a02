@@ -30,24 +30,26 @@ public class Solution19 {
     */
 
     public static void main(String[] args) {
+        Solution19 body = new Solution19();
+
         System.out.print("Enter your height (in inches): ");
-        double height = Double.parseDouble(isNumeric());
+        double height = Double.parseDouble(body.isNumeric());
 
         System.out.print("Enter your weight (in pounds): ");
-        double weight = Double.parseDouble(isNumeric());
+        double weight = Double.parseDouble(body.isNumeric());
 
-        double bmi = getBMI(height, weight);
+        double bmi = body.getBMI(height, weight);
 
-        System.out.printf("Your BMI is %.1f%n%s%n", bmi, getRecommendation(bmi));
+        System.out.printf("Your BMI is %.1f%n%s%n", bmi, body.getRecommendation(bmi));
 
 
     }
 
-    public static double getBMI (double height, double weight){
+    public double getBMI (double height, double weight){
         return (weight / (Math.pow(height, 2))) * 703;
     }
 
-    public static String getRecommendation (double bmi){
+    public String getRecommendation (double bmi){
         String recommendation;
 
         if (bmi >= 18.5 && bmi <= 25){
@@ -62,7 +64,7 @@ public class Solution19 {
         return recommendation;
     }
 
-    public static String isNumeric(){
+    public String isNumeric(){
         Scanner input = new Scanner(System.in);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();

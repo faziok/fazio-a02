@@ -24,6 +24,8 @@ public class Solution15 {
      */
 
     public static void main(String[] args) {
+        Solution15 pw = new Solution15();
+
         System.out.print("What is your username? ");
         Scanner inputName = new Scanner(System.in);
         String userName = inputName.nextLine();
@@ -32,6 +34,10 @@ public class Solution15 {
         Scanner input = new Scanner(System.in);
         String password = input.nextLine();
 
+        pw.checkPW(userName, password);
+    }
+
+    private void checkPW (String userName, String password){
         if (password.equals("abc$123")){
             System.out.printf("Welcome, %s!%n", userName);
         }

@@ -61,18 +61,20 @@ public class Solution23 {
      */
 
     public static void main(String[] args) {
+        Solution23 fix = new Solution23();
+
         System.out.print("Is the car silent when you turn the key? ");
-        String answer = scanAnswer();
+        String answer = fix.scanAnswer();
 
         if (answer.equals("Yes")){
-            batteryTerminal();
+            fix.batteryTerminal();
         }
         else{
-            slickingNoise();
+            fix.slickingNoise();
         }
     }
 
-    public static String scanAnswer(){
+    public String scanAnswer(){
         Scanner input = new Scanner(System.in);
         String answer =input.nextLine();
 
@@ -81,7 +83,7 @@ public class Solution23 {
         return answer;
     }
 
-    public static String yesOrNo(String answer){
+    public String yesOrNo(String answer){
         do{
             if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")){
                 answer = "Yes";
@@ -99,7 +101,7 @@ public class Solution23 {
         return answer;
     }
 
-    public static void batteryTerminal (){
+    public void batteryTerminal (){
         System.out.print("Are the battery terminals corroded? ");
         String answer = scanAnswer();
 
@@ -111,7 +113,7 @@ public class Solution23 {
         }
     }
 
-    public static void slickingNoise (){
+    public void slickingNoise (){
         System.out.print("Does the car make a slicking noise? ");
         String answer = scanAnswer();
 
@@ -123,7 +125,7 @@ public class Solution23 {
         }
     }
 
-    public static void crankUpFail (){
+    public void crankUpFail (){
         System.out.print("Does the car crank up but fail to start? ");
         String answer = scanAnswer();
 
@@ -135,7 +137,7 @@ public class Solution23 {
         }
     }
 
-    public static void engineStartDie (){
+    public void engineStartDie (){
         System.out.print("Does the engine start and then die? ");
         String answer = scanAnswer();
 
@@ -147,7 +149,7 @@ public class Solution23 {
         }
     }
 
-    public static void fuelInjection (){
+    public void fuelInjection (){
         System.out.print("Does you car have fuel injection? ");
         String answer = scanAnswer();
 

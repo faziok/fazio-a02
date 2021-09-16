@@ -35,8 +35,10 @@ public class Solution21 {
      */
 
     public static void main(String[] args) {
+        Solution21 theMonth = new Solution21();
+
         System.out.print("Please enter the number of the month: ");
-        int month = Integer.parseInt(isNumeric());
+        int month = Integer.parseInt(theMonth.isNumeric());
         String message;
 
         String monthString = switch (month) {
@@ -65,7 +67,7 @@ public class Solution21 {
             System.out.printf("%s%s.%n", message, monthString);
     }
 
-    public static String isNumeric(){
+    public String isNumeric(){
         Scanner input = new Scanner(System.in);
         boolean numeric = input.hasNextDouble();
         String number = input.nextLine();

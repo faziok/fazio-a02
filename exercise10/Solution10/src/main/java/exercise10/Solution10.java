@@ -27,8 +27,9 @@ public class Solution10 {
 
     public static void main(String[] args) {
         final double taxRate = .055;
-
         Scanner input = new Scanner(System.in);
+
+        Solution10 items = new Solution10();
 
         String[] pricesStr = new String[3];
         String[] quantityStr = new String[3];
@@ -46,24 +47,24 @@ public class Solution10 {
             item[i] = price * quantity;
         }
 
-        double subTotal = getSubTotal(item);
-        double taxTotal = getTaxTotal(subTotal, taxRate);
-        double totalAmount = getTotal(subTotal, taxTotal);
+        double subTotal = items.getSubTotal(item);
+        double taxTotal = items.getTaxTotal(subTotal, taxRate);
+        double totalAmount = items.getTotal(subTotal, taxTotal);
 
         System.out.printf("Subtotal: $%.2f%n", BigDecimal.valueOf(subTotal));
         System.out.printf("Tax: $%.2f%n", BigDecimal.valueOf(taxTotal));
         System.out.printf("Total: $%.2f%n", BigDecimal.valueOf(totalAmount));
     }
 
-    public static double getSubTotal(double[] amounts){
+    public double getSubTotal(double[] amounts){
         return amounts[0] + amounts[1] + amounts[2];
     }
 
-    public static double getTaxTotal(double sub, double tax){
+    public double getTaxTotal(double sub, double tax){
         return sub * tax;
     }
 
-    public static double getTotal(double sub, double taxed){
+    public double getTotal(double sub, double taxed){
         return sub + taxed;
     }
 }

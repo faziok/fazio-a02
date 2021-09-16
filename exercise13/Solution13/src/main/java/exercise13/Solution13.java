@@ -33,31 +33,33 @@ public class Solution13 {
      */
 
     public static void main(String[] args) {
+        Solution13 interest = new Solution13();
+
         System.out.print("What is the principal amount? ");
-        double principal = Double.parseDouble(input());
+        double principal = Double.parseDouble(interest.input());
 
         System.out.print("What is the interest rate as a percentage (ex. 15 not .15)? ");
-        double interestRate = Double.parseDouble(input());
+        double interestRate = Double.parseDouble(interest.input());
 
         System.out.print("What is the number of years? ");
-        int years = Integer.parseInt(input());
+        int years = Integer.parseInt(interest.input());
 
         System.out.print("What is the number of times the interest is compounded per year? ");
-        int timesPerYear = Integer.parseInt(input());
+        int timesPerYear = Integer.parseInt(interest.input());
 
-        double endAmount = getEndAmount(principal, interestRate, years, timesPerYear);
+        double endAmount = interest.getEndAmount(principal, interestRate, years, timesPerYear);
         BigDecimal dollar = BigDecimal.valueOf(endAmount);
 
-        System.out.printf("$%.2f invested at %.1f%% for %d years compounded %d times per year is %s.%n",
-                principal, interestRate, years, timesPerYear, currencyFormat(dollar));
+        System.out.printf("$%.2f invested at %.1f%% interest for %d years, compounded %d times per year is %s.%n",
+                principal, interestRate, years, timesPerYear, interest.currencyFormat(dollar));
     }
 
-        public static String input(){
+        public String input(){
             Scanner input = new Scanner(System.in);
             return input.nextLine();
         }
 
-        public static double getEndAmount(double principal, double interestRate, int years, int timesPerYear){
+        public double getEndAmount(double principal, double interestRate, int years, int timesPerYear){
             double x = (1 + ((interestRate/100)/timesPerYear));
             double powerOf = timesPerYear * (double) years;
             double z = Math.pow(x, powerOf);
@@ -65,7 +67,7 @@ public class Solution13 {
             return Math.ceil((value) * 100)/100;
         }
 
-        public static String currencyFormat(BigDecimal n) {
+        public String currencyFormat(BigDecimal n) {
             return NumberFormat.getCurrencyInstance().format(n);
         }
 }

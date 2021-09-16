@@ -26,11 +26,38 @@ public class Solution16 {
     public static void main(String[] args) {
         final int LEGAL_AGE = 16;
 
-        System.out.print("What is your age? ");
-        Scanner input = new Scanner(System.in);
-        int userAge = input.nextInt();
+        Solution16 ageLimit = new Solution16();
 
-        System.out.printf(userAge >= LEGAL_AGE ? "You are old enough to legally drive.%n" :
-                "You are NOT old enough to legally drive.%n");
+        System.out.print("What is your age? ");
+        int userAge = Integer.parseInt(ageLimit.isNumeric());
+
+        userAge = ageLimit.inRange(userAge);
+
+        printOutput(userAge, LEGAL_AGE);
+    }
+
+    public static void printOutput (int age, int legalAge){
+        System.out.println(age >= legalAge ? "You are old enough to legally drive." :
+                "You are NOT old enough to legally drive.");
+    }
+
+    public int inRange (int userAge){
+        while (userAge < 0){
+            System.out.print("Please enter an age greater than 0: ");
+            userAge = Integer.parseInt(isNumeric());
+        }
+        return userAge;
+    }
+
+    public String isNumeric(){
+        Scanner input = new Scanner(System.in);
+        boolean numeric = input.hasNextDouble();
+        String number = input.nextLine();
+        while (!numeric) {
+            System.out.print("Please answer with numeric values only: ");
+            numeric = input.hasNextDouble();
+            number = input.nextLine();
+        }
+        return number;
     }
 }

@@ -31,32 +31,34 @@ public class Solution12 {
      */
 
     public static void main(String[] args) {
-        System.out.print("Enter the Principal: ");
-        double principalBalance = Double.parseDouble(input());
-        System.out.print("Enter the interest rate as a percentage (ex. 15 not .15)? ");
-        double interestRate = Double.parseDouble(input());
-        System.out.print("Enter the number of years: ");
-        int numberYears = Integer.parseInt(input());
+        Solution12 interest = new Solution12();
 
-        double totalAccrued = getNewBalance(principalBalance, interestRate, numberYears);
+        System.out.print("Enter the Principal: ");
+        double principalBalance = Double.parseDouble(interest.input());
+        System.out.print("Enter the interest rate as a percentage (ex. 15 not .15)? ");
+        double interestRate = Double.parseDouble(interest.input());
+        System.out.print("Enter the number of years: ");
+        int numberYears = Integer.parseInt(interest.input());
+
+        double totalAccrued = interest.getNewBalance(principalBalance, interestRate, numberYears);
         BigDecimal dollar = BigDecimal.valueOf(totalAccrued);
 
-        System.out.printf("After %d years at %.1f%%, the investment will be worth %s.%n",
-                numberYears, interestRate, currencyFormat(dollar));
+        System.out.printf("After %d years at %.1f%% interest, the investment will be worth %s.%n",
+                numberYears, interestRate, interest.currencyFormat(dollar));
 
     }
 
-    public static String input(){
+    public String input(){
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
-    public static double getNewBalance(double principal, double rate, int time){
+    public double getNewBalance(double principal, double rate, int time){
         double value = principal * (1 + ((rate/100) * time));
         return Math.ceil((value) * 100)/100;
     }
 
-    public static String currencyFormat(BigDecimal n) {
+    public String currencyFormat(BigDecimal n) {
         return NumberFormat.getCurrencyInstance().format(n);
     }
 }

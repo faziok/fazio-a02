@@ -38,25 +38,27 @@ public class Solution17 {
 
 
     public static void main(String[] args) {
+        Solution17 alcohol = new Solution17();
+
         System.out.print("Enter a 1 if you are male or a 2 if you are female: ");
-        double gender = Double.parseDouble(isNumeric());
-        gender = checkGender(gender);
+        double gender = Double.parseDouble(alcohol.isNumeric());
+        gender = alcohol.checkGender(gender);
 
         System.out.print("How many OUNCES of alcohol did you have? ");
-        double ounces = Double.parseDouble(isNumeric());
+        double ounces = Double.parseDouble(alcohol.isNumeric());
 
         System.out.print("What is your weight, in pounds? ");
-        double weight = Double.parseDouble(isNumeric());
+        double weight = Double.parseDouble(alcohol.isNumeric());
 
         System.out.print("How many hours has it been since your last drink? ");
-        double hours = Double.parseDouble(isNumeric());
+        double hours = Double.parseDouble(alcohol.isNumeric());
 
-        double bloodAC = getBAC(gender, ounces, weight, hours);
-        printResult(bloodAC);
+        double bloodAC = alcohol.getBAC(gender, ounces, weight, hours);
+        alcohol.printResult(bloodAC);
 
     }
 
-    public static String isNumeric(){
+    public String isNumeric(){
         Scanner input = new Scanner(System.in);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
@@ -70,7 +72,7 @@ public class Solution17 {
         return answer;
     }
 
-    public static double checkGender(double gender){
+    public double checkGender(double gender){
         Scanner input = new Scanner(System.in);
 
         while (gender < 1 || gender > 2){
@@ -80,7 +82,7 @@ public class Solution17 {
         return gender;
     }
 
-    public static double getBAC(double gender, double ounces, double weight, double hours){
+    public double getBAC(double gender, double ounces, double weight, double hours){
         double ratio = .73; //male alcohol distribution ratio
         if(gender == 2){
             ratio = .66; //female alcohol distribution ratio
@@ -88,7 +90,7 @@ public class Solution17 {
         return ((((ounces * 5.14) / weight) * ratio) - (.015 * hours));
     }
 
-    public static void printResult(double bloodAlcoholContent){
+    public void printResult(double bloodAlcoholContent){
         if (bloodAlcoholContent < .08 ){
             System.out.printf("Your BAC is %.6f%nIt is legal for you to drive.%n", bloodAlcoholContent);
         }

@@ -27,6 +27,8 @@ public class Solution14 {
      */
 
     public static void main(String[] args) {
+        Solution14 tax = new Solution14();
+
         System.out.print("What is the order amount? ");
         Scanner input1 = new Scanner(System.in);
         double amount = Double.parseDouble(input1.nextLine());
@@ -39,15 +41,18 @@ public class Solution14 {
 
         if (state.equalsIgnoreCase("WI") || state.equalsIgnoreCase("Wisconsin")) {
             output = String.format("The subtotal is $%.2f%nThe tax is $%.2f.%nThe total is $%.2f%n",
-                    amount, (amount * .055), getNewAmount(amount));
+                    amount, tax.taxedAmount(amount), tax.getNewAmount(amount, tax.taxedAmount(amount)));
         }
 
         System.out.print(output);
     }
 
-    public static double getNewAmount(double amount){
-        double taxedAmount = amount * .055;
+    public double getNewAmount(double amount, double taxedAmount){
         double newAmount = amount + (taxedAmount);
         return Math.ceil((newAmount) * 100)/100;
+    }
+
+    public double taxedAmount (double amount){
+        return amount * .055;
     }
 }

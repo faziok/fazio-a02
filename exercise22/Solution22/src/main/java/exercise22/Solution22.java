@@ -36,37 +36,24 @@ public class Solution22 {
      */
 
     public static void main(String[] args) {
+        Solution22 largest = new Solution22();
+
         System.out.print("Enter first number: ");
-        double numberOne = Double.parseDouble(isNumeric());
+        double numberOne = Double.parseDouble(largest.isNumeric());
 
         System.out.print("Enter second number: ");
-        double numberTwo = Double.parseDouble(isNumeric());
+        double numberTwo = Double.parseDouble(largest.isNumeric());
 
         System.out.print("Enter third number: ");
-        double numberThree = Double.parseDouble(isNumeric());
+        double numberThree = Double.parseDouble(largest.isNumeric());
 
-        double largestNumber = 0;
 
-        if (numberOne == numberTwo || numberOne == numberThree || numberTwo == numberThree){
-            System.exit(0);
-        }
-        else{
-            if (numberOne > numberTwo && numberOne > numberThree){
-                largestNumber = numberOne;
-            }
-            else if (numberTwo > numberThree){
-                largestNumber = numberTwo;
-            }
-            else{
-                largestNumber = numberThree;
-            }
-        }
-
-        System.out.printf("The largest number is %.1f.%n", largestNumber);
+        System.out.printf("The largest number is %.1f.%n",
+                largest.answer(numberOne, numberTwo, numberThree));
 
     }
 
-    public static String isNumeric(){
+    public String isNumeric(){
         Scanner input = new Scanner(System.in);
         boolean numeric = input.hasNextDouble();
         String number = input.nextLine();
@@ -76,5 +63,20 @@ public class Solution22 {
             number = input.nextLine();
         }
         return number;
+    }
+
+    public double answer(double n1, double n2, double n3){
+        double largestNumber = 0;
+
+        if (n1 == n2 || n1 == n3 || n2 == n3){
+            System.exit(0);
+        }
+        else{
+            if (n1 > n2 && n1 > n3){
+                largestNumber = n1;
+            }
+            else largestNumber = Math.max(n2, n3);
+        }
+        return largestNumber;
     }
 }

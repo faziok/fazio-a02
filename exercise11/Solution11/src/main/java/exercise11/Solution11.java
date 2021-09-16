@@ -23,23 +23,25 @@ public class Solution11 {
      */
 
     public static void main(String[] args) {
+        Solution11 exchange = new Solution11();
+
         System.out.print("How many euros are you exchanging? ");
-        double euros = Double.parseDouble(input());
+        double euros = Double.parseDouble(exchange.input());
 
         System.out.print("What is the exchange rate? ");
-        double exchangeRate = Double.parseDouble(input());
+        double exchangeRate = Double.parseDouble(exchange.input());
 
-        System.out.printf("%.2f euros at an exchange rate of %.4f is%n$%.2f U.S. dollars%n",
-                euros, exchangeRate, getConversion(euros, exchangeRate));
+        System.out.printf("%.2f euros at an exchange rate of %.2f is%n$%.2f USD.%n",
+                euros, exchangeRate, exchange.getConversion(euros, exchangeRate));
 
     }
 
-    public static String input(){
+    public String input(){
         Scanner input = new Scanner(System.in);
         return input.nextLine();
     }
 
-    public static double getConversion(double currency, double rate){
+    public double getConversion(double currency, double rate){
         return Math.ceil((currency * rate) * 100)/100;
     }
 }
