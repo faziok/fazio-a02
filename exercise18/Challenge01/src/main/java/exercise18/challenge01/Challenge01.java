@@ -38,6 +38,7 @@ public class Challenge01 {
      */
 
     public static void main(String[] args) {
+        Challenge01 temp = new Challenge01();
 
         System.out.printf("Press C to convert from Fahrenheit to Celsius.%n" +
                 "Press F to convert from Celsius to Fahrenheit.%n" +
@@ -46,10 +47,10 @@ public class Challenge01 {
         Scanner input = new Scanner(System.in);
         String answer = input.nextLine();
 
-        printTemp(checkValid(answer));
+        temp.printTemp(temp.checkValid(answer));
     }
 
-    public static String checkValid (String answer){
+    public String checkValid (String answer){
         while (!answer.equalsIgnoreCase("C") && !answer.equalsIgnoreCase("F")){
             System.out.print("Invalid entry, please try again: ");
             Scanner input = new Scanner(System.in);
@@ -58,7 +59,7 @@ public class Challenge01 {
         return answer;
     }
 
-    public static void printTemp (String answer){
+    public void printTemp (String answer){
         double finalTemp;
         String scale;
 
@@ -74,10 +75,10 @@ public class Challenge01 {
             finalTemp = (temp * (1.8)) + 32; //to Fahrenheit
             scale = "Fahrenheit";
         }
-        System.out.printf("The temperature in %s is %.1f.%n", scale, finalTemp);
+        System.out.printf("The temperature in %s is %.1f degrees.%n", scale, finalTemp);
     }
 
-    public static String isNumeric(){
+    public String isNumeric(){
         Scanner input = new Scanner(System.in);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();

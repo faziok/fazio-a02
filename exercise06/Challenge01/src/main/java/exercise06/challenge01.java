@@ -5,6 +5,7 @@ package exercise06;
  *  Copyright 2021 first_name last_name
  */
 
+import javax.print.attribute.standard.PrinterResolution;
 import java.time.Year;
 import java.util.Scanner;
 
@@ -37,28 +38,30 @@ public class challenge01 {
     */
 
     public static void main(String[] args) {
+        challenge01 retirement = new challenge01();
+
         System.out.print("What is your current age? ");
-        String age = scanStringInput();
+        String age = retirement.scanStringInput();
 
         System.out.print("At what age would you like to retire? ");
-        String retire = scanStringInput();
+        String retire = retirement.scanStringInput();
 
         int currentAge = Integer.parseInt(age);
         int retireAge = Integer.parseInt(retire);
 
-        getRetireYear(getYearsLeft(retireAge, currentAge));
+        retirement.getRetireYear(retirement.getYearsLeft(retireAge, currentAge));
     }
 
-    public static String scanStringInput(){
+    public String scanStringInput(){
         Scanner inputX = new Scanner(System.in);
         return inputX.nextLine();
     }
 
-    public static int getYearsLeft(int x, int y){
+    public int getYearsLeft(int x, int y){
         return x - y;
     }
 
-    public static void getRetireYear(int yearsToRetire){
+    public void getRetireYear(int yearsToRetire){
         int currentYear = Year.now().getValue();
         int retireYear = yearsToRetire + currentYear;
 

@@ -34,13 +34,15 @@ public class challenge01 {
      */
 
     public static void main(String[] args) {
+        challenge01 area = new challenge01();
+
         final double CONVERSION_FACTOR = 0.09290304;
 
         System.out.print("What is the length of the room in feet? ");
-        Double length = Double.parseDouble(isNumeric());
+        Double length = Double.parseDouble(area.isNumeric());
 
         System.out.print("What is the width of the room in feet? ");
-        Double width = Double.parseDouble(isNumeric());
+        Double width = Double.parseDouble(area.isNumeric());
 
         System.out.printf("You entered dimensions of %.1f feet by %.1f feet.%n", length, width);
 
@@ -52,7 +54,7 @@ public class challenge01 {
 
     }
 
-    public static String isNumeric(){
+    public String isNumeric(){
         Scanner input = new Scanner(System.in);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
