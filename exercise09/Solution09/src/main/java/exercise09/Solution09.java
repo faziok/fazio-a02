@@ -8,6 +8,8 @@ package exercise09;
 import java.util.Scanner;
 
 public class Solution09 {
+    Scanner input = new Scanner(System.in);
+    private static final int ONE_GALLON = 350; //one gallon covers 350 square feet
 
     /*
      * Pseudocode:
@@ -25,15 +27,10 @@ public class Solution09 {
      */
 
     public static void main(String[] args) {
-        final int ONE_GALLON = 350; //one gallon covers 350 square feet
-
         Solution09 gallons = new Solution09();
 
-        System.out.print("What is the length of the ceiling? ");
-        int length = gallons.intInput();
-
-        System.out.print("What is the width of the ceiling? ");
-        int width = gallons.intInput();
+        int length = Integer.parseInt(gallons.scanInput("What is the length of the ceiling? "));
+        int width = Integer.parseInt(gallons.scanInput("What is the width of the ceiling? "));
 
         int area = gallons.getArea(length, width);
 
@@ -41,9 +38,21 @@ public class Solution09 {
                 gallons.getTotalGallons(area, ONE_GALLON), area);
     }
 
-    public int intInput(){
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
+    public String scanInput(String prompt){
+        System.out.print(prompt);
+        return isNumeric();
+    }
+
+    public String isNumeric(){
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
     }
 
     public int getArea(int l, int w){

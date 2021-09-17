@@ -8,6 +8,7 @@ package exercise11;
 import java.util.Scanner;
 
 public class Solution11 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -25,20 +26,29 @@ public class Solution11 {
     public static void main(String[] args) {
         Solution11 exchange = new Solution11();
 
-        System.out.print("How many euros are you exchanging? ");
-        double euros = Double.parseDouble(exchange.input());
-
-        System.out.print("What is the exchange rate? ");
-        double exchangeRate = Double.parseDouble(exchange.input());
+        double euros = Double.parseDouble(exchange.scanInput("How many euros are you exchanging? "));
+        double exchangeRate = Double.parseDouble(exchange.scanInput("What is the exchange rate? "));
 
         System.out.printf("%.2f euros at an exchange rate of %.2f is%n$%.2f USD.%n",
                 euros, exchangeRate, exchange.getConversion(euros, exchangeRate));
 
     }
 
-    public String input(){
-        Scanner input = new Scanner(System.in);
-        return input.nextLine();
+    public String scanInput(String prompt){
+        System.out.print(prompt);
+        return isNumeric();
+    }
+
+    public String isNumeric(){
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with a positive numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
     }
 
     public double getConversion(double currency, double rate){

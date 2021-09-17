@@ -10,7 +10,7 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Solution12 {
-
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -33,12 +33,10 @@ public class Solution12 {
     public static void main(String[] args) {
         Solution12 interest = new Solution12();
 
-        System.out.print("Enter the Principal: ");
-        double principalBalance = Double.parseDouble(interest.input());
-        System.out.print("Enter the interest rate as a percentage (ex. 15 not .15)? ");
-        double interestRate = Double.parseDouble(interest.input());
-        System.out.print("Enter the number of years: ");
-        int numberYears = Integer.parseInt(interest.input());
+        double principalBalance = Double.parseDouble(interest.scanInput("Enter the Principal: "));
+        double interestRate = Double.parseDouble(interest.scanInput("Enter the interest rate as a percentage " +
+                "(ex. 15 not .15)? "));
+        int numberYears = Integer.parseInt(interest.scanInput("Enter the number of years: "));
 
         double totalAccrued = interest.getNewBalance(principalBalance, interestRate, numberYears);
         BigDecimal dollar = BigDecimal.valueOf(totalAccrued);
@@ -48,9 +46,21 @@ public class Solution12 {
 
     }
 
-    public String input(){
-        Scanner input = new Scanner(System.in);
-        return input.nextLine();
+    public String scanInput(String prompt){
+        System.out.print(prompt);
+        return isNumeric();
+    }
+
+    public String isNumeric(){
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with a positive numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
     }
 
     public double getNewBalance(double principal, double rate, int time){

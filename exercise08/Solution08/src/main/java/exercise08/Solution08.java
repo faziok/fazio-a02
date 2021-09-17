@@ -8,6 +8,7 @@ package exercise08;
 import java.util.Scanner;
 
 public class Solution08 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -36,33 +37,38 @@ public class Solution08 {
     public static void main(String[] args) {
         Solution08 pizza = new Solution08();
 
-        System.out.print("How many people? ");
-        int totalPeople = pizza.intInput();
+        int totalPeople = Integer.parseInt(pizza.scanInput("How many people? "));
+        int totalPizzas = Integer.parseInt(pizza.scanInput("How many people? "));
+        int slicesPerPizza = Integer.parseInt(pizza.scanInput("How many slices per pizza? "));
 
-        System.out.print("How many pizzas do you have? ");
-        int totalPizzas = pizza.intInput();
-
-        System.out.print("How many slices per pizza? ");
-        int slicesPerPizza = pizza.intInput();
-
-        slicesPerPizza = pizza.checkEvenSlices(slicesPerPizza);
-
-        int totalSlices = pizza.getTotalSlices(slicesPerPizza, totalPizzas);
+        int numSlicesPerPizza = pizza.checkEvenSlices(slicesPerPizza);
+        int totalSlices = pizza.getTotalSlices(numSlicesPerPizza, totalPizzas);
 
         System.out.printf("%d people with %d pizzas (%d pieces)%n", totalPeople, totalPizzas, totalSlices);
         System.out.printf("Each person gets %d pieces of pizza.%n", pizza.getTotalPerPerson(totalSlices, totalPeople));
         System.out.printf("There are %d leftover pieces.%n", pizza.getRemainder(totalSlices, totalPeople));
     }
 
-    public int intInput(){
-        Scanner input = new Scanner(System.in);
-        return input.nextInt();
+    public String scanInput(String prompt){
+        System.out.print(prompt);
+        return isNumeric();
+    }
+
+    public String isNumeric(){
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with a positive numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
     }
 
     public int checkEvenSlices(int slicesPerPizza){
         while ((slicesPerPizza & 1) == 1){
-            System.out.print("Please enter an even number of slices per pizza: ");
-            slicesPerPizza = intInput();
+            slicesPerPizza = Integer.parseInt(scanInput("Please enter an even number of slices per pizza: "));
         }
         return slicesPerPizza;
     }

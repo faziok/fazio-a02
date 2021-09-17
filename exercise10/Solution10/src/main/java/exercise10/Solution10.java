@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Solution10 {
+    Scanner input = new Scanner(System.in);
+    private static final double TAX_RATE = .055;
 
     /*
      * Pseudocode:
@@ -26,34 +28,53 @@ public class Solution10 {
      */
 
     public static void main(String[] args) {
-        final double taxRate = .055;
-        Scanner input = new Scanner(System.in);
 
         Solution10 items = new Solution10();
 
         String[] pricesStr = new String[3];
         String[] quantityStr = new String[3];
-        double[] item = new double [3];
 
-        for (int i = 0; i < pricesStr.length; i++){
-            System.out.printf("Enter the price of item %d: ", (i+1));
-            pricesStr[i] = input.nextLine();
-            System.out.printf("Enter the quantity of item %d: ", (i+1));
-            quantityStr[i] = input.nextLine();
-
-            double price = Double.parseDouble(pricesStr[i]);
-            double quantity = Double.parseDouble(quantityStr[i]);
-
-            item[i] = price * quantity;
-        }
+        double[] item = items.getItemAndPrice(pricesStr, quantityStr);
 
         double subTotal = items.getSubTotal(item);
-        double taxTotal = items.getTaxTotal(subTotal, taxRate);
+        double taxTotal = items.getTaxTotal(subTotal, TAX_RATE);
         double totalAmount = items.getTotal(subTotal, taxTotal);
 
         System.out.printf("Subtotal: $%.2f%n", BigDecimal.valueOf(subTotal));
         System.out.printf("Tax: $%.2f%n", BigDecimal.valueOf(taxTotal));
         System.out.printf("Total: $%.2f%n", BigDecimal.valueOf(totalAmount));
+    }
+
+    public String scanInput(String prompt){
+        System.out.print(prompt);
+        return isNumeric();
+    }
+
+    public String isNumeric(){
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
+    }
+
+    public double[] getItemAndPrice(String[] prices, String[] quantity){
+        double[] item = new double[prices.length];
+
+        for (int i = 0; i < prices.length; i++){
+            prices[i] = scanInput(String.format("Enter the price of item %d: ", (i+1)));
+            quantity[i] = scanInput(String.format("Enter the quantity of item %d: ", (i+1)));
+
+            double price = Double.parseDouble(prices[i]);
+            double itemQuantity = Double.parseDouble(quantity[i]);
+
+            item[i] = price * itemQuantity;
+        }
+        return item;
     }
 
     public double getSubTotal(double[] amounts){
