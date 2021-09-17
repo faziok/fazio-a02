@@ -8,6 +8,7 @@ package exercise07;
 import java.util.Scanner;
 
 public class Solution07 {
+    Scanner input = new Scanner(System.in);
 
     /*
     * Pseudocode:
@@ -28,24 +29,25 @@ public class Solution07 {
     public static void main(String[] args) {
         Solution07 area = new Solution07();
 
-        System.out.print("What is the length of the room in feet? ");
-        double length = Double.parseDouble(area.scanIntInput());
+        double length = Double.parseDouble(area.scanInput("What is the length of the room in feet? "));
+        double width = Double.parseDouble(area.scanInput("What is the width of the room in feet? "));
 
-        System.out.print("What is the width of the room in feet? ");
-        double width = Double.parseDouble(area.scanIntInput());
-
-        System.out.printf("You entered dimensions of %.1f feet by %.1f feet.%n", length, width);
+        area.printOutput(String.format("You entered dimensions of %.1f feet by %.1f feet.%n", length, width));
 
         double squareFeet = area.getSquareFeet(length, width);
         double squareMeters = area.getSquareMeters(squareFeet);
 
-        System.out.printf("The area is:%n%.1f square feet%n%.1f square meters%n", squareFeet, squareMeters);
-
+        area.printOutput(String.format("The area is:%n%.1f square feet%n%.1f square meters%n",
+                squareFeet, squareMeters));
     }
 
-    public String scanIntInput(){
-        Scanner input = new Scanner(System.in);
+    public String scanInput(String prompt){
+        System.out.print(prompt);
         return input.nextLine();
+    }
+
+    public void printOutput(String output){
+        System.out.print(output);
     }
 
     public double getSquareFeet(double l, double w){

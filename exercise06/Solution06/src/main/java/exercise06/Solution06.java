@@ -9,7 +9,7 @@ import java.time.Year;
 import java.util.Scanner;
 
 public class Solution06 {
-
+    private static final Scanner input = new Scanner(System.in);
     /*
     *Pseudocode:
     * Prompt user "What is your current age?"
@@ -31,11 +31,9 @@ public class Solution06 {
     public static void main(String[] args) {
         Solution06 retirement = new Solution06();
 
-        System.out.print("What is your current age? ");
-        String age = retirement.scanStringInput();
 
-        System.out.print("At what age would you like to retire? ");
-        String retire = retirement.scanStringInput();
+        String age = retirement.scanStringInput("What is your current age? ");
+        String retire = retirement.scanStringInput("At what age would you like to retire? ");
 
         int currentAge = Integer.parseInt(age);
         int retireAge = Integer.parseInt(retire);
@@ -43,9 +41,9 @@ public class Solution06 {
         retirement.getRetireYear(retirement.getYearsLeft(retireAge, currentAge));
     }
 
-    public String scanStringInput(){
-        Scanner inputX = new Scanner(System.in);
-        return inputX.nextLine();
+    public String scanStringInput(String prompt){
+        System.out.print(prompt);
+        return input.nextLine();
     }
 
     public int getYearsLeft(int x, int y){

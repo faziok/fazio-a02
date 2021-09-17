@@ -24,5 +24,5 @@ run {
 }
 
 application {
-    mainClass = "exercise07.challenge01" //CHANGE TO MAIN CLASS PATH!
+    mainClass = "exercise07.challenge01.Challenge01" //CHANGE TO MAIN CLASS PATH!
 }

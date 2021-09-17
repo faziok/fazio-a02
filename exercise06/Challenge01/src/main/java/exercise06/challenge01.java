@@ -10,6 +10,7 @@ import java.time.Year;
 import java.util.Scanner;
 
 public class challenge01 {
+    Scanner input = new Scanner(System.in);
 
     /*
     ***CHALLENGE: Handle situations where the program returns a negative number
@@ -40,11 +41,8 @@ public class challenge01 {
     public static void main(String[] args) {
         challenge01 retirement = new challenge01();
 
-        System.out.print("What is your current age? ");
-        String age = retirement.scanStringInput();
-
-        System.out.print("At what age would you like to retire? ");
-        String retire = retirement.scanStringInput();
+        String age = retirement.scanStringInput("What is your current age? ");
+        String retire = retirement.scanStringInput("At what age would you like to retire? ");
 
         int currentAge = Integer.parseInt(age);
         int retireAge = Integer.parseInt(retire);
@@ -52,9 +50,13 @@ public class challenge01 {
         retirement.getRetireYear(retirement.getYearsLeft(retireAge, currentAge));
     }
 
-    public String scanStringInput(){
-        Scanner inputX = new Scanner(System.in);
-        return inputX.nextLine();
+    public String scanStringInput(String prompt){
+        System.out.print(prompt);
+        return input.nextLine();
+    }
+
+    public void printOutput(String output){
+        System.out.print(output);
     }
 
     public int getYearsLeft(int x, int y){
@@ -66,12 +68,12 @@ public class challenge01 {
         int retireYear = yearsToRetire + currentYear;
 
         if (yearsToRetire > 0){
-            System.out.printf("You have %d years left until you can retire.%n", yearsToRetire);
-            System.out.printf("It's %d, so you can retire in %d.%n", currentYear, retireYear);
+            printOutput(String.format("You have %d years left until you can retire.%n" +
+                    "It's %d, so you can retire in %d.%n", yearsToRetire, currentYear, retireYear));
         }
         else{
-            System.out.println("You can already retire!!!");
-            System.out.printf("It's %d, your old ass could have retired in %d.%n", currentYear, retireYear);
+            printOutput(String.format("You can already retire!!!%n" +
+                    "It's %d, your old ass could have retired in %d.%n", currentYear, retireYear));
         }
     }
 }
