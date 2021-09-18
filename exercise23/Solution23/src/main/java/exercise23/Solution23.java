@@ -82,12 +82,6 @@ public class Solution23 {
         return answer;
     }
 
-    public void printResponse(String prompt){
-        System.out.println(prompt);
-    }
-
-
-
     public String yesOrNo(String answer){
         do{
             if (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes")){
@@ -103,6 +97,10 @@ public class Solution23 {
         } while (!answer.equals("Yes") && !answer.equals("No"));
 
         return answer;
+    }
+
+    public void printResponse(String prompt){
+        System.out.println(prompt);
     }
 
     public void batteryTerminal (){
