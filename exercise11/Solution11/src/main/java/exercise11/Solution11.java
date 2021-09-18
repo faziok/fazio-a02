@@ -26,20 +26,16 @@ public class Solution11 {
     public static void main(String[] args) {
         Solution11 exchange = new Solution11();
 
-        double euros = Double.parseDouble(exchange.scanInput("How many euros are you exchanging? "));
-        double exchangeRate = Double.parseDouble(exchange.scanInput("What is the exchange rate? "));
+        double euros = Double.parseDouble(exchange.isScanInputNumeric("How many euros are you exchanging? "));
+        double exchangeRate = Double.parseDouble(exchange.isScanInputNumeric("What is the exchange rate? "));
 
         System.out.printf("%.2f euros at an exchange rate of %.2f is%n$%.2f USD.%n",
                 euros, exchangeRate, exchange.getConversion(euros, exchangeRate));
 
     }
 
-    public String scanInput(String prompt){
+    public String isScanInputNumeric(String prompt){
         System.out.print(prompt);
-        return isNumeric();
-    }
-
-    public String isNumeric(){
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
