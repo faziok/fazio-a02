@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Solution07 {
     Scanner input = new Scanner(System.in);
+    private static final double CONVERSION_FACTOR = 0.09290304;
 
     /*
     * Pseudocode:
@@ -55,7 +56,6 @@ public class Solution07 {
     }
 
     public double getSquareMeters(double feet){
-        final double CONVERSION_FACTOR = 0.09290304;
         return feet * CONVERSION_FACTOR;
     }
 }
