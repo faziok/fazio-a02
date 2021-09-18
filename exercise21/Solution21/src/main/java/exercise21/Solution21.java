@@ -8,6 +8,7 @@ package exercise21;
 import java.util.Scanner;
 
 public class Solution21 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -37,8 +38,8 @@ public class Solution21 {
     public static void main(String[] args) {
         Solution21 theMonth = new Solution21();
 
-        System.out.print("Please enter the number of the month: ");
-        int month = Integer.parseInt(theMonth.isNumeric());
+        int month = Integer.parseInt(theMonth.isScanInputNumeric("Please enter the number of the month: "));
+
         String message;
 
         String monthString = switch (month) {
@@ -67,15 +68,16 @@ public class Solution21 {
             System.out.printf("%s%s.%n", message, monthString);
     }
 
-    public String isNumeric(){
-        Scanner input = new Scanner(System.in);
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
         boolean numeric = input.hasNextDouble();
-        String number = input.nextLine();
-        while (!numeric) {
+        String answer = input.nextLine();
+
+        while (!numeric){
             System.out.print("Please answer with numeric values only: ");
             numeric = input.hasNextDouble();
-            number = input.nextLine();
+            answer = input.nextLine();
         }
-        return number;
+        return answer;
     }
 }
