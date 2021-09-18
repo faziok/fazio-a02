@@ -33,10 +33,10 @@ public class Solution12 {
     public static void main(String[] args) {
         Solution12 interest = new Solution12();
 
-        double principalBalance = Double.parseDouble(interest.scanInput("Enter the Principal: "));
-        double interestRate = Double.parseDouble(interest.scanInput("Enter the interest rate as a percentage " +
+        double principalBalance = Double.parseDouble(interest.isScanInputNumeric("Enter the Principal: "));
+        double interestRate = Double.parseDouble(interest.isScanInputNumeric("Enter the interest rate as a percentage " +
                 "(ex. 15 not .15)? "));
-        int numberYears = Integer.parseInt(interest.scanInput("Enter the number of years: "));
+        int numberYears = Integer.parseInt(interest.isScanInputNumeric("Enter the number of years: "));
 
         double totalAccrued = interest.getNewBalance(principalBalance, interestRate, numberYears);
         BigDecimal dollar = BigDecimal.valueOf(totalAccrued);
@@ -46,12 +46,8 @@ public class Solution12 {
 
     }
 
-    public String scanInput(String prompt){
+    public String isScanInputNumeric(String prompt){
         System.out.print(prompt);
-        return isNumeric();
-    }
-
-    public String isNumeric(){
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
@@ -68,7 +64,7 @@ public class Solution12 {
         return Math.ceil((value) * 100)/100;
     }
 
-    public String currencyFormat(BigDecimal n) {
-        return NumberFormat.getCurrencyInstance().format(n);
+    public String currencyFormat(BigDecimal dollar) {
+        return NumberFormat.getCurrencyInstance().format(dollar);
     }
 }
