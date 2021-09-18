@@ -8,6 +8,7 @@ package exercise19;
 import java.util.Scanner;
 
 public class Solution19 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode
@@ -32,17 +33,12 @@ public class Solution19 {
     public static void main(String[] args) {
         Solution19 body = new Solution19();
 
-        System.out.print("Enter your height (in inches): ");
-        double height = Double.parseDouble(body.isNumeric());
-
-        System.out.print("Enter your weight (in pounds): ");
-        double weight = Double.parseDouble(body.isNumeric());
+        double height = Double.parseDouble(body.isScanInputNumeric("Enter your height (in inches): "));
+        double weight = Double.parseDouble(body.isScanInputNumeric("Enter your weight (in pounds): "));
 
         double bmi = body.getBMI(height, weight);
 
         System.out.printf("Your BMI is %.1f%n%s%n", bmi, body.getRecommendation(bmi));
-
-
     }
 
     public double getBMI (double height, double weight){
@@ -64,12 +60,12 @@ public class Solution19 {
         return recommendation;
     }
 
-    public String isNumeric(){
-        Scanner input = new Scanner(System.in);
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
-        while (!numeric) {
+        while (!numeric){
             System.out.print("Please answer with numeric values only: ");
             numeric = input.hasNextDouble();
             answer = input.nextLine();
