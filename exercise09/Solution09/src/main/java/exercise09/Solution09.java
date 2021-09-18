@@ -29,8 +29,8 @@ public class Solution09 {
     public static void main(String[] args) {
         Solution09 gallons = new Solution09();
 
-        int length = Integer.parseInt(gallons.scanInput("What is the length of the ceiling? "));
-        int width = Integer.parseInt(gallons.scanInput("What is the width of the ceiling? "));
+        int length = Integer.parseInt(gallons.isScanInputNumeric("What is the length of the ceiling? "));
+        int width = Integer.parseInt(gallons.isScanInputNumeric("What is the width of the ceiling? "));
 
         int area = gallons.getArea(length, width);
 
@@ -38,12 +38,8 @@ public class Solution09 {
                 gallons.getTotalGallons(area, ONE_GALLON), area);
     }
 
-    public String scanInput(String prompt){
+    public String isScanInputNumeric(String prompt){
         System.out.print(prompt);
-        return isNumeric();
-    }
-
-    public String isNumeric(){
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
