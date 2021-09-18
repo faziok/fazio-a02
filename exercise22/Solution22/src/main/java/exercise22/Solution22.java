@@ -8,6 +8,7 @@ package exercise22;
 import java.util.Scanner;
 
 public class Solution22 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -38,33 +39,27 @@ public class Solution22 {
     public static void main(String[] args) {
         Solution22 largest = new Solution22();
 
-        System.out.print("Enter first number: ");
-        double numberOne = Double.parseDouble(largest.isNumeric());
-
-        System.out.print("Enter second number: ");
-        double numberTwo = Double.parseDouble(largest.isNumeric());
-
-        System.out.print("Enter third number: ");
-        double numberThree = Double.parseDouble(largest.isNumeric());
+        double numberOne = Double.parseDouble(largest.isScanInputNumeric("Enter first number: "));
+        double numberTwo = Double.parseDouble(largest.isScanInputNumeric("Enter second number: "));
+        double numberThree = Double.parseDouble(largest.isScanInputNumeric("Enter third number: "));
 
 
         System.out.printf("The largest number is %.1f.%n",
                 largest.answer(numberOne, numberTwo, numberThree));
-
     }
 
-    public String isNumeric(){
-        Scanner input = new Scanner(System.in);
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
         boolean numeric = input.hasNextDouble();
-        String number = input.nextLine();
-        while (!numeric) {
+        String answer = input.nextLine();
+
+        while (!numeric){
             System.out.print("Please answer with numeric values only: ");
             numeric = input.hasNextDouble();
-            number = input.nextLine();
+            answer = input.nextLine();
         }
-        return number;
+        return answer;
     }
-
     public double answer(double n1, double n2, double n3){
         double largestNumber = 0;
 
