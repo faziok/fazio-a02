@@ -9,6 +9,8 @@ package exercise16;
 import java.util.Scanner;
 
 public class Solution16 {
+    Scanner input = new Scanner(System.in);
+    private  static final int LEGAL_AGE = 16;
 
     /*
      * Pseudocode:
@@ -24,40 +26,37 @@ public class Solution16 {
      */
 
     public static void main(String[] args) {
-        final int LEGAL_AGE = 16;
-
         Solution16 ageLimit = new Solution16();
 
-        System.out.print("What is your age? ");
-        int userAge = Integer.parseInt(ageLimit.isNumeric());
+        int userAge = Integer.parseInt(ageLimit.isScanInputNumeric("What is your age? "));
 
         userAge = ageLimit.inRange(userAge);
 
         printOutput(userAge, LEGAL_AGE);
     }
 
-    public static void printOutput (int age, int legalAge){
-        System.out.println(age >= legalAge ? "You are old enough to legally drive." :
-                "You are NOT old enough to legally drive.");
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
     }
 
     public int inRange (int userAge){
         while (userAge < 0){
-            System.out.print("Please enter an age greater than 0: ");
-            userAge = Integer.parseInt(isNumeric());
+            userAge = Integer.parseInt(isScanInputNumeric("Please enter an age greater than 0: "));
         }
         return userAge;
     }
 
-    public String isNumeric(){
-        Scanner input = new Scanner(System.in);
-        boolean numeric = input.hasNextDouble();
-        String number = input.nextLine();
-        while (!numeric) {
-            System.out.print("Please answer with numeric values only: ");
-            numeric = input.hasNextDouble();
-            number = input.nextLine();
-        }
-        return number;
+    public static void printOutput (int age, int legalAge){
+        System.out.println(age >= legalAge ? "You are old enough to legally drive." :
+                "You are NOT old enough to legally drive.");
     }
 }

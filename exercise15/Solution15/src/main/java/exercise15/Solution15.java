@@ -27,14 +27,15 @@ public class Solution15 {
     public static void main(String[] args) {
         Solution15 pw = new Solution15();
 
-        System.out.print("What is your username? ");
-        String userName = pw.input.nextLine();
-
-        System.out.print("What is your password? ");
-        Scanner input = new Scanner(System.in);
-        String password = input.nextLine();
+        String userName = pw.scanInput("What is your username? ");
+        String password = pw.scanInput("What is your password? ");
 
         pw.checkPW(userName, password);
+    }
+
+    public String scanInput(String prompt){
+        System.out.print(prompt);
+        return input.nextLine();
     }
 
     private void checkPW (String userName, String password){
@@ -45,6 +46,4 @@ public class Solution15 {
             System.out.printf("I don't know you, %s.%n", userName);
         }
     }
-
-    
 }
