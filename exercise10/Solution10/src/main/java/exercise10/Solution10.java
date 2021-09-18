@@ -45,12 +45,9 @@ public class Solution10 {
         System.out.printf("Total: $%.2f%n", BigDecimal.valueOf(totalAmount));
     }
 
-    public String scanInput(String prompt){
-        System.out.print(prompt);
-        return isNumeric();
-    }
 
-    public String isNumeric(){
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
@@ -66,8 +63,8 @@ public class Solution10 {
         double[] item = new double[prices.length];
 
         for (int i = 0; i < prices.length; i++){
-            prices[i] = scanInput(String.format("Enter the price of item %d: ", (i+1)));
-            quantity[i] = scanInput(String.format("Enter the quantity of item %d: ", (i+1)));
+            prices[i] = isScanInputNumeric(String.format("Enter the price of item %d: ", (i+1)));
+            quantity[i] = isScanInputNumeric(String.format("Enter the quantity of item %d: ", (i+1)));
 
             double price = Double.parseDouble(prices[i]);
             double itemQuantity = Double.parseDouble(quantity[i]);
