@@ -38,7 +38,7 @@ public class Solution08 {
         Solution08 pizza = new Solution08();
 
         int totalPeople = Integer.parseInt(pizza.scanInput("How many people? "));
-        int totalPizzas = Integer.parseInt(pizza.scanInput("How many people? "));
+        int totalPizzas = Integer.parseInt(pizza.scanInput("How many pizzas? "));
         int slicesPerPizza = Integer.parseInt(pizza.scanInput("How many slices per pizza? "));
 
         int numSlicesPerPizza = pizza.checkEvenSlices(slicesPerPizza);
