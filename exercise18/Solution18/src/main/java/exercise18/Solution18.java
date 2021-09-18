@@ -8,6 +8,7 @@ package exercise18;
 import java.util.Scanner;
 
 public class Solution18 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -39,45 +40,41 @@ public class Solution18 {
     public static void main(String[] args) {
         Solution18 convert = new Solution18();
 
-        System.out.printf("Press C to convert from Fahrenheit to Celsius.%n" +
+        String answer = convert.getResponse(String.format("Press C to convert from Fahrenheit to Celsius.%n" +
                 "Press F to convert from Celsius to Fahrenheit.%n" +
-                "Your choice: ");
-
-        Scanner input = new Scanner(System.in);
-        String answer = input.nextLine();
+                "Your choice: "));
 
         convert.printTemp(convert.checkValid(answer));
     }
 
+    public String getResponse(String prompt){
+        System.out.print(prompt);
+        return input.nextLine();
+    }
+
     public String checkValid (String answer){
         while (!answer.equalsIgnoreCase("C") && !answer.equalsIgnoreCase("F")){
-            System.out.print("Invalid entry, please try again: ");
-            Scanner input = new Scanner(System.in);
-            answer = input.nextLine();
+            answer = getResponse("Invalid entry, please try again: ");
         }
         return answer;
     }
 
     public void printTemp (String answer){
-        Scanner input = new Scanner(System.in);
         double temp;
         double finalTemp;
         String scale;
 
-        if (answer.equalsIgnoreCase("C")){
-            System.out.print("Please enter the temperature in Fahrenheit: ");
-            temp = Double.parseDouble(input.nextLine());
-            finalTemp = ((temp - 32) * .5556); //to Celsius
+        if (answer.equalsIgnoreCase("C")){ //change to celsius
+            temp = Double.parseDouble(getResponse("Please enter the temperature in Fahrenheit: "));
+            finalTemp = ((temp - 32) * .5556);
             scale = "Celsius";
         }
-        else{
-            System.out.print("Please enter the temperature in Celsius: ");
-            temp = Double.parseDouble(input.nextLine());
-            finalTemp = (temp * (1.8)) + 32; //to Fahrenheit
+        else{ //change to fahrenheit
+            temp = Double.parseDouble(getResponse("Please enter the temperature in Celsius: "));
+            finalTemp = (temp * (1.8)) + 32;
             scale = "Fahrenheit";
         }
 
         System.out.printf("The temperature in %s is %.1f degrees.%n", scale, finalTemp);
     }
-
 }

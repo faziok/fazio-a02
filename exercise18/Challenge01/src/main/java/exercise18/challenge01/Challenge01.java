@@ -8,6 +8,7 @@ package exercise18.challenge01;
 import java.util.Scanner;
 
 public class Challenge01 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -38,52 +39,52 @@ public class Challenge01 {
      */
 
     public static void main(String[] args) {
-        Challenge01 temp = new Challenge01();
+        Challenge01 convert = new Challenge01();
 
-        System.out.printf("Press C to convert from Fahrenheit to Celsius.%n" +
+        String answer = convert.getResponse(String.format("Press C to convert from Fahrenheit to Celsius.%n" +
                 "Press F to convert from Celsius to Fahrenheit.%n" +
-                "Your choice: ");
+                "Your choice: "));
 
-        Scanner input = new Scanner(System.in);
-        String answer = input.nextLine();
+        convert.printTemp(convert.checkValid(answer));
+    }
 
-        temp.printTemp(temp.checkValid(answer));
+    public String getResponse(String prompt){
+        System.out.print(prompt);
+        return input.nextLine();
     }
 
     public String checkValid (String answer){
         while (!answer.equalsIgnoreCase("C") && !answer.equalsIgnoreCase("F")){
-            System.out.print("Invalid entry, please try again: ");
-            Scanner input = new Scanner(System.in);
-            answer = input.nextLine();
+            answer = getResponse("Invalid entry, please try again: ");
         }
         return answer;
     }
 
     public void printTemp (String answer){
+        double temp;
         double finalTemp;
         String scale;
 
-        if (answer.equalsIgnoreCase("C")){
-            System.out.print("Please enter the temperature in Fahrenheit: ");
-            double temp = Double.parseDouble(isNumeric());
-            finalTemp = ((temp - 32) * .5556); //to Celsius
+        if (answer.equalsIgnoreCase("C")){ //change to celsius
+            temp = Double.parseDouble(isScanInputNumeric("Please enter the temperature in Fahrenheit: "));
+            finalTemp = ((temp - 32) * .5556);
             scale = "Celsius";
         }
-        else{
-            System.out.print("Please enter the temperature in Celsius: ");
-            double temp = Double.parseDouble(isNumeric());
-            finalTemp = (temp * (1.8)) + 32; //to Fahrenheit
+        else{ //change to fahrenheit
+            temp = Double.parseDouble(isScanInputNumeric("Please enter the temperature in Celsius: "));
+            finalTemp = (temp * (1.8)) + 32;
             scale = "Fahrenheit";
         }
+
         System.out.printf("The temperature in %s is %.1f degrees.%n", scale, finalTemp);
     }
 
-    public String isNumeric(){
-        Scanner input = new Scanner(System.in);
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
-        while (!numeric) {
+        while (!numeric){
             System.out.print("Please answer with numeric values only: ");
             numeric = input.hasNextDouble();
             answer = input.nextLine();
