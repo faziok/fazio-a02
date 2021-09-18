@@ -8,6 +8,7 @@ package exercise23;
 import java.util.Scanner;
 
 public class Solution23 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -63,8 +64,7 @@ public class Solution23 {
     public static void main(String[] args) {
         Solution23 fix = new Solution23();
 
-        System.out.print("Is the car silent when you turn the key? ");
-        String answer = fix.scanAnswer();
+        String answer = fix.scanAnswer("Is the car silent when you turn the key? ");
 
         if (answer.equals("Yes")){
             fix.batteryTerminal();
@@ -74,14 +74,19 @@ public class Solution23 {
         }
     }
 
-    public String scanAnswer(){
-        Scanner input = new Scanner(System.in);
+    public String scanAnswer(String prompt){
+        System.out.print(prompt);
         String answer =input.nextLine();
-
         answer = yesOrNo(answer);
 
         return answer;
     }
+
+    public void printResponse(String prompt){
+        System.out.println(prompt);
+    }
+
+
 
     public String yesOrNo(String answer){
         do{
@@ -92,8 +97,7 @@ public class Solution23 {
                 answer = "No";
             }
             else{
-                System.out.print("Please answer yes or no: ");
-                Scanner input = new Scanner(System.in);
+                printResponse("Please answer yes or no: ");
                 answer = input.nextLine();
             }
         } while (!answer.equals("Yes") && !answer.equals("No"));
@@ -102,23 +106,21 @@ public class Solution23 {
     }
 
     public void batteryTerminal (){
-        System.out.print("Are the battery terminals corroded? ");
-        String answer = scanAnswer();
+        String answer = scanAnswer("Are the battery terminals corroded? ");
 
         if(answer.equals("Yes")){
-            System.out.println("Clean terminals and try starting again.");
+            printResponse("Clean terminals and try starting again.");
         }
         else{
-            System.out.println("Replace cables and try again.");
+            printResponse("Replace cables and try again.");
         }
     }
 
     public void slickingNoise (){
-        System.out.print("Does the car make a slicking noise? ");
-        String answer = scanAnswer();
+        String answer = scanAnswer("Does the car make a slicking noise? ");
 
         if(answer.equals("Yes")){
-            System.out.println("Replace the battery.");
+            printResponse("Replace the battery.");
         }
         else{
             crankUpFail();
@@ -126,11 +128,10 @@ public class Solution23 {
     }
 
     public void crankUpFail (){
-        System.out.print("Does the car crank up but fail to start? ");
-        String answer = scanAnswer();
+        String answer = scanAnswer("Does the car crank up but fail to start? ");
 
         if(answer.equals("Yes")){
-            System.out.println("Check spark plug connections.");
+            printResponse("Check spark plug connections.");
         }
         else{
             engineStartDie();
@@ -138,26 +139,24 @@ public class Solution23 {
     }
 
     public void engineStartDie (){
-        System.out.print("Does the engine start and then die? ");
-        String answer = scanAnswer();
+        String answer = scanAnswer("Does the engine start and then die? ");
 
         if(answer.equals("Yes")){
             fuelInjection();
         }
         else{
-            System.out.println("This should not be possible.");
+            printResponse("This should not be possible.");
         }
     }
 
     public void fuelInjection (){
-        System.out.print("Does you car have fuel injection? ");
-        String answer = scanAnswer();
+        String answer = scanAnswer("Does you car have fuel injection? ");
 
         if(answer.equals("Yes")){
-            System.out.println("Get it in for service.");
+            printResponse("Get it in for service.");
         }
         else{
-            System.out.println("Check to ensure the choke is opening and closing.");
+            printResponse("Check to ensure the choke is opening and closing.");
         }
     }
 }
