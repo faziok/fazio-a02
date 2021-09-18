@@ -8,6 +8,7 @@ package exercise15;
 import java.util.Scanner;
 
 public class Solution15 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -27,8 +28,7 @@ public class Solution15 {
         Solution15 pw = new Solution15();
 
         System.out.print("What is your username? ");
-        Scanner inputName = new Scanner(System.in);
-        String userName = inputName.nextLine();
+        String userName = pw.input.nextLine();
 
         System.out.print("What is your password? ");
         Scanner input = new Scanner(System.in);
@@ -45,4 +45,6 @@ public class Solution15 {
             System.out.printf("I don't know you, %s.%n", userName);
         }
     }
+
+    
 }

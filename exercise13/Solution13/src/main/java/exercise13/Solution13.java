@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Solution13 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -35,17 +36,12 @@ public class Solution13 {
     public static void main(String[] args) {
         Solution13 interest = new Solution13();
 
-        System.out.print("What is the principal amount? ");
-        double principal = Double.parseDouble(interest.input());
-
-        System.out.print("What is the interest rate as a percentage (ex. 15 not .15)? ");
-        double interestRate = Double.parseDouble(interest.input());
-
-        System.out.print("What is the number of years? ");
-        int years = Integer.parseInt(interest.input());
-
-        System.out.print("What is the number of times the interest is compounded per year? ");
-        int timesPerYear = Integer.parseInt(interest.input());
+        double principal = Double.parseDouble(interest.scanInput("What is the principal amount? "));
+        double interestRate = Double.parseDouble(interest.scanInput("What is the interest rate as a percentage " +
+                "(ex. 15 not .15)? "));
+        int years = Integer.parseInt(interest.scanInput("What is the number of years? "));
+        int timesPerYear = Integer.parseInt(interest.scanInput("What is the number of times the interest " +
+                "is compounded per year? "));
 
         double endAmount = interest.getEndAmount(principal, interestRate, years, timesPerYear);
         BigDecimal dollar = BigDecimal.valueOf(endAmount);
@@ -54,10 +50,22 @@ public class Solution13 {
                 principal, interestRate, years, timesPerYear, interest.currencyFormat(dollar));
     }
 
-        public String input(){
-            Scanner input = new Scanner(System.in);
-            return input.nextLine();
+    public String scanInput(String prompt){
+        System.out.print(prompt);
+        return isNumeric();
+    }
+
+    public String isNumeric(){
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
         }
+        return answer;
+    }
 
         public double getEndAmount(double principal, double interestRate, int years, int timesPerYear){
             double x = (1 + ((interestRate/100)/timesPerYear));

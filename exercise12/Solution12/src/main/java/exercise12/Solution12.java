@@ -56,7 +56,7 @@ public class Solution12 {
         String answer = input.nextLine();
 
         while (!numeric){
-            System.out.print("Please answer with a positive numeric values only: ");
+            System.out.print("Please answer with numeric values only: ");
             numeric = input.hasNextDouble();
             answer = input.nextLine();
         }
