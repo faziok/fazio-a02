@@ -36,11 +36,11 @@ public class Solution13 {
     public static void main(String[] args) {
         Solution13 interest = new Solution13();
 
-        double principal = Double.parseDouble(interest.scanInput("What is the principal amount? "));
-        double interestRate = Double.parseDouble(interest.scanInput("What is the interest rate as a percentage " +
+        double principal = Double.parseDouble(interest.isScanInputNumeric("What is the principal amount? "));
+        double interestRate = Double.parseDouble(interest.isScanInputNumeric("What is the interest rate as a percentage " +
                 "(ex. 15 not .15)? "));
-        int years = Integer.parseInt(interest.scanInput("What is the number of years? "));
-        int timesPerYear = Integer.parseInt(interest.scanInput("What is the number of times the interest " +
+        int years = Integer.parseInt(interest.isScanInputNumeric("What is the number of years? "));
+        int timesPerYear = Integer.parseInt(interest.isScanInputNumeric("What is the number of times the interest " +
                 "is compounded per year? "));
 
         double endAmount = interest.getEndAmount(principal, interestRate, years, timesPerYear);
@@ -50,12 +50,8 @@ public class Solution13 {
                 principal, interestRate, years, timesPerYear, interest.currencyFormat(dollar));
     }
 
-    public String scanInput(String prompt){
+    public String isScanInputNumeric(String prompt){
         System.out.print(prompt);
-        return isNumeric();
-    }
-
-    public String isNumeric(){
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
@@ -75,7 +71,7 @@ public class Solution13 {
             return Math.ceil((value) * 100)/100;
         }
 
-        public String currencyFormat(BigDecimal n) {
-            return NumberFormat.getCurrencyInstance().format(n);
+        public String currencyFormat(BigDecimal dollar) {
+            return NumberFormat.getCurrencyInstance().format(dollar);
         }
 }
