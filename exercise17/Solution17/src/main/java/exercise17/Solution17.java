@@ -8,6 +8,7 @@ package exercise17;
 import java.util.Scanner;
 
 public class Solution17 {
+    Scanner input = new Scanner(System.in);
 
     /*
      * Pseudocode:
@@ -40,44 +41,35 @@ public class Solution17 {
     public static void main(String[] args) {
         Solution17 alcohol = new Solution17();
 
-        System.out.print("Enter a 1 if you are male or a 2 if you are female: ");
-        double gender = Double.parseDouble(alcohol.isNumeric());
-        gender = alcohol.checkGender(gender);
+        double gender = alcohol.checkGender(Double.parseDouble(alcohol.isScanInputNumeric
+                ("Enter a 1 if you are male or a 2 if you are female: ")));
 
-        System.out.print("How many OUNCES of alcohol did you have? ");
-        double ounces = Double.parseDouble(alcohol.isNumeric());
-
-        System.out.print("What is your weight, in pounds? ");
-        double weight = Double.parseDouble(alcohol.isNumeric());
-
-        System.out.print("How many hours has it been since your last drink? ");
-        double hours = Double.parseDouble(alcohol.isNumeric());
+        double ounces = Double.parseDouble(alcohol.isScanInputNumeric("How many OUNCES of alcohol did you have? "));
+        double weight = Double.parseDouble(alcohol.isScanInputNumeric("What is your weight, in pounds? "));
+        double hours = Double.parseDouble(alcohol.isScanInputNumeric("How many hours has it been " +
+                "since your last drink? "));
 
         double bloodAC = alcohol.getBAC(gender, ounces, weight, hours);
         alcohol.printResult(bloodAC);
 
     }
 
-    public String isNumeric(){
-        Scanner input = new Scanner(System.in);
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
 
-        while (!numeric) {
+        while (!numeric){
             System.out.print("Please answer with numeric values only: ");
             numeric = input.hasNextDouble();
             answer = input.nextLine();
         }
-
         return answer;
     }
 
     public double checkGender(double gender){
-        Scanner input = new Scanner(System.in);
-
         while (gender < 1 || gender > 2){
-            System.out.print("Try again, 1 if you are male or a 2 if you are female: ");
-            gender = input.nextDouble();
+            gender = Double.parseDouble(isScanInputNumeric("Try again, 1 if you are male or a 2 if you are female: "));
         }
         return gender;
     }
