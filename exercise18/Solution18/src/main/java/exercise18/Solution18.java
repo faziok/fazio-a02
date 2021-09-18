@@ -44,7 +44,7 @@ public class Solution18 {
                 "Press F to convert from Celsius to Fahrenheit.%n" +
                 "Your choice: "));
 
-        convert.printTemp(convert.checkValid(answer));
+        System.out.print(convert.getTemp(convert.checkValid(answer)));
     }
 
     public String getResponse(String prompt){
@@ -59,7 +59,7 @@ public class Solution18 {
         return answer;
     }
 
-    public void printTemp (String answer){
+    public String getTemp (String answer){
         double temp;
         double finalTemp;
         String scale;
@@ -75,6 +75,6 @@ public class Solution18 {
             scale = "Fahrenheit";
         }
 
-        System.out.printf("The temperature in %s is %.1f degrees.%n", scale, finalTemp);
+        return String.format("The temperature in %s is %.1f degrees.%n", scale, finalTemp);
     }
 }
