@@ -28,7 +28,6 @@ public class Solution10 {
      */
 
     public static void main(String[] args) {
-
         Solution10 items = new Solution10();
 
         String[] pricesStr = new String[3];
@@ -36,27 +35,7 @@ public class Solution10 {
 
         double[] item = items.getItemAndPrice(pricesStr, quantityStr);
 
-        double subTotal = items.getSubTotal(item);
-        double taxTotal = items.getTaxTotal(subTotal, TAX_RATE);
-        double totalAmount = items.getTotal(subTotal, taxTotal);
-
-        System.out.printf("Subtotal: $%.2f%n", BigDecimal.valueOf(subTotal));
-        System.out.printf("Tax: $%.2f%n", BigDecimal.valueOf(taxTotal));
-        System.out.printf("Total: $%.2f%n", BigDecimal.valueOf(totalAmount));
-    }
-
-
-    public String isScanInputNumeric(String prompt){
-        System.out.print(prompt);
-        boolean numeric = input.hasNextDouble();
-        String answer = input.nextLine();
-
-        while (!numeric){
-            System.out.print("Please answer with numeric values only: ");
-            numeric = input.hasNextDouble();
-            answer = input.nextLine();
-        }
-        return answer;
+        items.printOutput(item);
     }
 
     public double[] getItemAndPrice(String[] prices, String[] quantity){
@@ -74,6 +53,19 @@ public class Solution10 {
         return item;
     }
 
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
+        boolean numeric = input.hasNextDouble();
+        String answer = input.nextLine();
+
+        while (!numeric){
+            System.out.print("Please answer with numeric values only: ");
+            numeric = input.hasNextDouble();
+            answer = input.nextLine();
+        }
+        return answer;
+    }
+
     public double getSubTotal(double[] amounts){
         return amounts[0] + amounts[1] + amounts[2];
     }
@@ -84,5 +76,14 @@ public class Solution10 {
 
     public double getTotal(double sub, double taxed){
         return sub + taxed;
+    }
+
+    public void printOutput(double[] item){
+        double subTotal = getSubTotal(item);
+        double taxTotal = getTaxTotal(subTotal, TAX_RATE);
+        double totalAmount = getTotal(subTotal, taxTotal);
+
+        System.out.printf("Subtotal: $%.2f%nTax: $%.2f%nTotal: $%.2f%n", BigDecimal.valueOf(subTotal),
+                BigDecimal.valueOf(taxTotal), BigDecimal.valueOf(totalAmount));
     }
 }
