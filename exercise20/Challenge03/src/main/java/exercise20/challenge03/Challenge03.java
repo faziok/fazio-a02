@@ -7,6 +7,13 @@ package exercise20.challenge03;
 
 import java.util.Scanner;
 
+public class Challenge03 {
+    Scanner input = new Scanner(System.in);
+
+    static final double WISCONSIN_STATE_TAX = .05;
+    static final double ILLINOIS_STATE_TAX = .08;
+    static final double FLORIDA_STATE_TAX = .06;
+
 /*
  * Challenge 03: Allow the user to also enter the state’s full name in upper, lower, or mixed case.
  *
@@ -52,49 +59,27 @@ import java.util.Scanner;
  * totalAmount = subTotal + (taxedAmount) (rounded to nearest cent)
  */
 
-public class Challenge03 {
     public static void main(String[] args) {
         Challenge03 tax = new Challenge03();
 
-        final double WISCONSIN_STATE_TAX = .05;
-        final double ILLINOIS_STATE_TAX = .08;
-        final double FLORIDA_STATE_TAX = .06;
+        double subTotal = Double.parseDouble(tax.isScanInputNumeric("What is the order amount? "));
 
-        System.out.print("What is the order amount? ");
-        double subTotal = Double.parseDouble(tax.isNumeric());
+        String state = tax.scanInput("What is the state? ");
 
-        System.out.print("What is the state? ");
-        String state = tax.getInput();
-
-        double taxPercentage;
-
-        if (state.equalsIgnoreCase("WI") || state.equalsIgnoreCase("Wisconsin")) {
-            taxPercentage = tax.getWisconsinCountyTax(WISCONSIN_STATE_TAX);
-            tax.printTaxedStates(subTotal, taxPercentage);
-        }
-        else if (state.equalsIgnoreCase("IL") || state.equalsIgnoreCase("Illinois")){
-            taxPercentage = ILLINOIS_STATE_TAX;
-            tax.printTaxedStates(subTotal, taxPercentage);
-        }
-        else if (state.equalsIgnoreCase("FL") || state.equalsIgnoreCase("Florida")){
-            taxPercentage = tax.getFloridaCountyTax(FLORIDA_STATE_TAX);
-            tax.printTaxedStates(subTotal, taxPercentage);
-        }
-        else{
-            System.out.printf("The total is $%.2f.%n", subTotal);
-        }
+        System.out.print(tax.getTotal(state, subTotal));
     }
 
-    public String getInput(){
-        Scanner input = new Scanner(System.in);
+    public String scanInput(String prompt){
+        System.out.print(prompt);
         return input.nextLine();
     }
 
-    public String isNumeric(){
-        Scanner input = new Scanner(System.in);
+    public String isScanInputNumeric(String prompt){
+        System.out.print(prompt);
         boolean numeric = input.hasNextDouble();
         String answer = input.nextLine();
-        while (!numeric) {
+
+        while (!numeric){
             System.out.print("Please answer with numeric values only: ");
             numeric = input.hasNextDouble();
             answer = input.nextLine();
@@ -103,8 +88,7 @@ public class Challenge03 {
     }
 
     public double getWisconsinCountyTax(double wisconsinStateTax){
-        System.out.print("Which county do you live in? Eau Claire or Dunn? ");
-        String county = getInput();
+        String county = scanInput("Which county do you live in? Eau Claire or Dunn? ");
 
         if (county.equalsIgnoreCase("Eau Claire")) {
             wisconsinStateTax += .005; //5% Eau Clair county tax
@@ -119,8 +103,7 @@ public class Challenge03 {
     }
 
     public double getFloridaCountyTax(double floridaStateTax){
-        System.out.print("Which county do you live in? Lake or Orange? ");
-        String county = getInput();
+        String county = scanInput("Which county do you live in? Lake or Orange? ");
 
         if (county.equalsIgnoreCase("Lake")) {
             floridaStateTax += .01; //1% Lake county tax
@@ -134,9 +117,32 @@ public class Challenge03 {
         return floridaStateTax;
     }
 
-    public void printTaxedStates(double subTotal, double taxPercentage){
+    public String getTotal(String state, double subTotal){
+        double taxPercentage;
+        String finalOutput;
+
+        if (state.equalsIgnoreCase("WI") || state.equalsIgnoreCase("Wisconsin")) {
+            taxPercentage = getWisconsinCountyTax(WISCONSIN_STATE_TAX);
+            finalOutput = printTaxedStates(subTotal, taxPercentage);
+        }
+        else if (state.equalsIgnoreCase("IL") || state.equalsIgnoreCase("Illinois")){
+            taxPercentage = ILLINOIS_STATE_TAX;
+            finalOutput = printTaxedStates(subTotal, taxPercentage);
+        }
+        else if (state.equalsIgnoreCase("FL") || state.equalsIgnoreCase("Florida")){
+            taxPercentage = getFloridaCountyTax(FLORIDA_STATE_TAX);
+            finalOutput = printTaxedStates(subTotal, taxPercentage);
+        }
+        else{
+            finalOutput = String.format("The total is $%.2f.%n", subTotal);
+        }
+
+        return finalOutput;
+    }
+
+    public String printTaxedStates(double subTotal, double taxPercentage){
         double taxedAmount = subTotal * taxPercentage;
         double totalAmount = Math.ceil((subTotal + taxedAmount) * 100)/100;
-        System.out.printf("The tax is: $%.2f.%nThe total is: $%.2f%n", taxedAmount, totalAmount);
+        return String.format("The tax is: $%.2f.%nThe total is: $%.2f%n", taxedAmount, totalAmount);
     }
 }
